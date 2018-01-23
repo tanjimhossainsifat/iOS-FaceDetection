@@ -12,6 +12,7 @@
 		0E42BC62201783F500C449DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC61201783F500C449DF /* main.m */; };
 		0E42BC72201784C800C449DF /* LiveVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC70201784C800C449DF /* LiveVideoViewController.m */; };
 		0E42BC73201784C800C449DF /* LiveVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E42BC71201784C800C449DF /* LiveVideoViewController.xib */; };
+		0E4C20F32017C14A00456104 /* FaceDetectorHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		0E42BC6F201784C800C449DF /* LiveVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveVideoViewController.h; sourceTree = "<group>"; };
 		0E42BC70201784C800C449DF /* LiveVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveVideoViewController.m; sourceTree = "<group>"; };
 		0E42BC71201784C800C449DF /* LiveVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveVideoViewController.xib; sourceTree = "<group>"; };
+		0E4C20F12017C14A00456104 /* FaceDetectorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectorHelper.h; sourceTree = "<group>"; };
+		0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetectorHelper.mm; sourceTree = "<group>"; };
+		0E4C20F52017C16F00456104 /* iOS-FaceDector-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-FaceDector-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		0E42BC51201783F400C449DF /* iOS-FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
+				0E4C20F42017C15A00456104 /* Supporting Files */,
+				0E4C20F02017C12400456104 /* OpenCV Helper */,
 				0E42BC6E201784B400C449DF /* ViewController */,
 				0E42BC52201783F400C449DF /* AppDelegate.h */,
 				0E42BC53201783F400C449DF /* AppDelegate.m */,
@@ -74,6 +80,23 @@
 				0E42BC71201784C800C449DF /* LiveVideoViewController.xib */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0E4C20F02017C12400456104 /* OpenCV Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0E4C20F12017C14A00456104 /* FaceDetectorHelper.h */,
+				0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */,
+			);
+			path = "OpenCV Helper";
+			sourceTree = "<group>";
+		};
+		0E4C20F42017C15A00456104 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0E4C20F52017C16F00456104 /* iOS-FaceDector-Prefix.pch */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +169,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E42BC882017A05C00C449DF /* FaceDetectorHelper.mm in Sources */,
 				0E42BC62201783F500C449DF /* main.m in Sources */,
 				0E42BC72201784C800C449DF /* LiveVideoViewController.m in Sources */,
+				0E4C20F32017C14A00456104 /* FaceDetectorHelper.mm in Sources */,
 				0E42BC54201783F400C449DF /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
