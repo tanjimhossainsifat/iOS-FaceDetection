@@ -27,7 +27,7 @@
 		0E42BC71201784C800C449DF /* LiveVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveVideoViewController.xib; sourceTree = "<group>"; };
 		0E4C20F12017C14A00456104 /* FaceDetectorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectorHelper.h; sourceTree = "<group>"; };
 		0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetectorHelper.mm; sourceTree = "<group>"; };
-		0E4C20F52017C16F00456104 /* iOS-FaceDector-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-FaceDector-Prefix.pch"; sourceTree = "<group>"; };
+		0E4C20F52017C16F00456104 /* iOS-FaceDetection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-FaceDetection-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,7 @@
 		0E4C20F42017C15A00456104 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0E4C20F52017C16F00456104 /* iOS-FaceDector-Prefix.pch */,
+				0E4C20F52017C16F00456104 /* iOS-FaceDetection-Prefix.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";

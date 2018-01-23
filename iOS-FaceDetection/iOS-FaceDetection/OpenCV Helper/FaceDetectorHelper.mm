@@ -39,12 +39,14 @@
 }
 
 - (void) rotateCamera {
+    [videoCamera stop];
     if(videoCamera.defaultAVCaptureDevicePosition == AVCaptureDevicePositionFront) {
         videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
     }
     else {
         videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     }
+    [videoCamera start];
 }
 
 #pragma mark - CvVideoCameraDelegate method
