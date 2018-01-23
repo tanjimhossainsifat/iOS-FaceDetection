@@ -146,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E42BC882017A05C00C449DF /* FaceDetectorHelper.mm in Sources */,
 				0E42BC62201783F500C449DF /* main.m in Sources */,
 				0E42BC72201784C800C449DF /* LiveVideoViewController.m in Sources */,
 				0E42BC54201783F400C449DF /* AppDelegate.m in Sources */,
@@ -263,8 +264,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_NAME)/Supporting Files/iOS-FaceDetection-Prefix.pch";
 				INFOPLIST_FILE = "iOS-FaceDetection/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tanjimhossainsifat.iOS-FaceDetection";
@@ -278,8 +282,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_NAME)/Supporting Files/iOS-FaceDetection-Prefix.pch";
 				INFOPLIST_FILE = "iOS-FaceDetection/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tanjimhossainsifat.iOS-FaceDetection";

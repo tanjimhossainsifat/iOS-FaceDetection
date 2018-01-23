@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="captureButton" destination="AM4-Nu-BI4" id="xTQ-qj-sNo"/>
                 <outlet property="imageView" destination="6cB-wx-JMd" id="dgz-zB-te2"/>
+                <outlet property="rotateButton" destination="bjQ-2s-DTJ" id="apL-UM-wgC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,6 +25,17 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6cB-wx-JMd">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="587"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjQ-2s-DTJ">
+                    <rect key="frame" x="305" y="517" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="avG-Jv-L6t"/>
+                        <constraint firstAttribute="width" constant="50" id="xMt-pV-q9m"/>
+                    </constraints>
+                    <state key="normal" image="rotate"/>
+                    <connections>
+                        <action selector="onRotateButton:" destination="-1" eventType="touchUpInside" id="R1t-Wk-qhr"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AM4-Nu-BI4">
                     <rect key="frame" x="170" y="597" width="34" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -37,13 +49,18 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="6cB-wx-JMd" secondAttribute="trailing" id="26k-9H-XKU"/>
+                <constraint firstItem="bjQ-2s-DTJ" firstAttribute="trailing" secondItem="6cB-wx-JMd" secondAttribute="trailing" constant="-20" id="5CI-bv-qMS"/>
                 <constraint firstItem="AM4-Nu-BI4" firstAttribute="top" secondItem="6cB-wx-JMd" secondAttribute="bottom" constant="10" id="5Zg-i5-akt"/>
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8D5-nB-nnO"/>
                 <constraint firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" constant="80" id="MXf-dH-LcO"/>
                 <constraint firstItem="AM4-Nu-BI4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Pl1-TB-BR9"/>
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UjJ-p4-bAO"/>
+                <constraint firstItem="bjQ-2s-DTJ" firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" constant="-20" id="nsn-GJ-MVN"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="rotate" width="128" height="128"/>
+    </resources>
 </document>

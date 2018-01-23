@@ -11,7 +11,9 @@
 @interface LiveVideoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *captureButton;
+@property (weak, nonatomic) IBOutlet UIButton *rotateButton;
 
 - (IBAction)onCaptureButton:(UIButton *)sender;
+- (IBAction)onRotateButton:(id)sender;
 
 @end
