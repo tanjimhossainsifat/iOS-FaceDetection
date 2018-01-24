@@ -8,7 +8,7 @@
 #import <opencv2/videoio/cap_ios.h>
 #import "FaceDetectorHelper.h"
 
-#define CompressionScale 2
+#define CompressionRatio 2
 
 @interface FaceDetectorHelper()<CvVideoCameraDelegate>
 
@@ -54,6 +54,22 @@
     
     NSLog(@"Process Image called");
     
+    cv::Mat compressedImage = [self compressImage:image];
+    
+}
+
+#pragma mark - Private methods
+
+-(cv::Mat) compressImage: (cv::Mat) image {
+    
+    cv::Mat grayImage;
+    cv::cvtColor(image, grayImage, CV_RGB2GRAY); //Converted color image to grayscale
+    
+    cv::Mat compressedImage(image.rows/CompressionRatio,image.cols/CompressionRatio,CV_8UC1);
+    cv::resize(grayImage, compressedImage, compressedImage.size()); //compressed grayScale image
+    cv::equalizeHist(compressedImage, compressedImage); //Equalized Histogram
+    
+    return compressedImage;
 }
 
 @end
