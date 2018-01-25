@@ -13,6 +13,7 @@
 		0E42BC72201784C800C449DF /* LiveVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC70201784C800C449DF /* LiveVideoViewController.m */; };
 		0E42BC73201784C800C449DF /* LiveVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E42BC71201784C800C449DF /* LiveVideoViewController.xib */; };
 		0E4C20F32017C14A00456104 /* FaceDetectorHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */; };
+		0E9F6B4D201A055B00FFE879 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9F6B4C201A055B00FFE879 /* Launch Screen.storyboard */; };
 		0EBD966920198D9300109A48 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0EBD966820198D9300109A48 /* haarcascade_frontalface_alt2.xml */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		0E4C20F12017C14A00456104 /* FaceDetectorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectorHelper.h; sourceTree = "<group>"; };
 		0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetectorHelper.mm; sourceTree = "<group>"; };
 		0E4C20F52017C16F00456104 /* iOS-FaceDetection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-FaceDetection-Prefix.pch"; sourceTree = "<group>"; };
+		0E9F6B4C201A055B00FFE879 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0EBD966820198D9300109A48 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 		0E4C20F42017C15A00456104 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0E9F6B4C201A055B00FFE879 /* Launch Screen.storyboard */,
 				0EBD966820198D9300109A48 /* haarcascade_frontalface_alt2.xml */,
 				0E4C20F52017C16F00456104 /* iOS-FaceDetection-Prefix.pch */,
 			);
@@ -162,6 +165,7 @@
 			files = (
 				0EBD966920198D9300109A48 /* haarcascade_frontalface_alt2.xml in Resources */,
 				0E42BC73201784C800C449DF /* LiveVideoViewController.xib in Resources */,
+				0E9F6B4D201A055B00FFE879 /* Launch Screen.storyboard in Resources */,
 				0E42BC5C201783F400C449DF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
