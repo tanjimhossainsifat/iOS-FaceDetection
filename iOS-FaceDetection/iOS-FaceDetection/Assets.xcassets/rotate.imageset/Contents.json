@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "rotate.png",
+      "filename" : "camera_swap_mode@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "camera_swap_mode@3x.png",
       "scale" : "3x"
     }
   ],

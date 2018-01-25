@@ -24,23 +24,13 @@
     self.faceDetectorHelper = [[FaceDetectorHelper alloc] initiWithParentView:self.imageView];
     self.faceDetectorHelper.delegate = self;
     
-    self.rotateButton.hidden = YES;
-    
     topImageView = [[UIImageView alloc] init];
 }
 
-- (IBAction)onCaptureButton:(UIButton *)sender {
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    if([self.captureButton isSelected]) {
-        [self.captureButton setSelected:NO];
-        [self.faceDetectorHelper stopCapture];
-        self.rotateButton.hidden = YES;
-    }
-    else {
-        [self.captureButton setSelected:YES];
-        [self.faceDetectorHelper startCapture];
-        self.rotateButton.hidden = NO;
-    }
+    [self.faceDetectorHelper startCapture];
 }
 
 - (IBAction)onRotateButton:(id)sender {
