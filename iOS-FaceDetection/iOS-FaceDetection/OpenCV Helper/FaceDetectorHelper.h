@@ -7,8 +7,7 @@
 //
 
 @protocol FaceDetectorDelegate <NSObject>
-- (void) detectedFaceWithUnitRects:(NSArray *) unitRects;
-- (void) detectedFaceWithImages: (NSArray *) images;
+- (void) detectedFaceWithUnitCGRects:(NSArray *) unitRects withUIImages: (NSArray *) images;
 @end
 
 

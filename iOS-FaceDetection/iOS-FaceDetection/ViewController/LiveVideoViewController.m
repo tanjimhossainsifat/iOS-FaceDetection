@@ -9,7 +9,7 @@
 #import "LiveVideoViewController.h"
 #import "FaceDetectorHelper.h"
 
-@interface LiveVideoViewController ()
+@interface LiveVideoViewController ()<FaceDetectorDelegate>
 
 @property (nonatomic, strong) FaceDetectorHelper *faceDetectorHelper;
 @end
@@ -20,6 +20,7 @@
     [super viewDidLoad];
     
     self.faceDetectorHelper = [[FaceDetectorHelper alloc] initiWithParentView:self.imageView];
+    self.faceDetectorHelper.delegate = self;
     
     self.rotateButton.hidden = YES;
 }
@@ -40,5 +41,17 @@
 
 - (IBAction)onRotateButton:(id)sender {
     [self.faceDetectorHelper rotateCamera];
+}
+
+#pragma mark - FaceDetectorDelegate methods
+
+- (void) detectedFaceWithUnitCGRects:(NSArray *) unitRects withUIImages: (NSArray *) images {
+    
+    for(NSValue *eachUnitRectValue in unitRects) {
+        
+        CGRect eachUnitRect = [eachUnitRectValue CGRectValue];
+        CGRect eachRect = CGRectMake(eachUnitRect.origin.x*self.imageView.frame.size.width, eachUnitRect.origin.y*self.imageView.frame.size.height, eachUnitRect.size.width*self.imageView.frame.size.width, eachUnitRect.size.height*self.imageView.frame.size.height);
+        
+    }
 }
 @end
