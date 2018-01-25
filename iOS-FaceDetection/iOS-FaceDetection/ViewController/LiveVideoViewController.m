@@ -14,7 +14,9 @@
 @property (nonatomic, strong) FaceDetectorHelper *faceDetectorHelper;
 @end
 
-@implementation LiveVideoViewController
+@implementation LiveVideoViewController {
+    UIImageView *topImageView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,6 +25,8 @@
     self.faceDetectorHelper.delegate = self;
     
     self.rotateButton.hidden = YES;
+    
+    topImageView = [[UIImageView alloc] init];
 }
 
 - (IBAction)onCaptureButton:(UIButton *)sender {
@@ -47,11 +51,27 @@
 
 - (void) detectedFaceWithUnitCGRects:(NSArray *) unitRects withUIImages: (NSArray *) images {
     
-    for(NSValue *eachUnitRectValue in unitRects) {
+    if(unitRects.count > 0) {
         
-        CGRect eachUnitRect = [eachUnitRectValue CGRectValue];
-        CGRect eachRect = CGRectMake(eachUnitRect.origin.x*self.imageView.frame.size.width, eachUnitRect.origin.y*self.imageView.frame.size.height, eachUnitRect.size.width*self.imageView.frame.size.width, eachUnitRect.size.height*self.imageView.frame.size.height);
-        
+        for(NSValue *eachUnitRectValue in unitRects) {
+            
+            CGRect eachUnitRect = [eachUnitRectValue CGRectValue];
+            CGRect eachRect = CGRectMake(eachUnitRect.origin.x*self.imageView.frame.size.width, eachUnitRect.origin.y*self.imageView.frame.size.height, eachUnitRect.size.width*self.imageView.frame.size.width, eachUnitRect.size.height*self.imageView.frame.size.height);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                topImageView.image = [UIImage imageNamed:@"anonymous"];
+                [topImageView setFrame:eachRect];
+                [self.imageView insertSubview:topImageView atIndex:self.imageView.subviews.count];
+            });
+            
+        }
     }
+    else {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [topImageView removeFromSuperview];
+        });
+    }
+    
 }
 @end

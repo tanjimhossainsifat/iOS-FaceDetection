@@ -65,16 +65,19 @@
 #pragma mark - CvVideoCameraDelegate method
 - (void)processImage:(cv::Mat&)image {
     
+    //1. Compress Image
     cv::Mat compressedImage = [self compressImage:image];
+    
+    //2.Get Face Rects from the compressed image
     std::vector<cv::Rect>faceRects = [self getDetectedFaceRectsInImage:compressedImage];
-    if(faceRects.size()>0) {
+   
+    //3. Draw rectangle around image if necessary
+   // [self drawRectengaleInImage:image forFaceRects:faceRects];
+    
+    //4. Call delegate method
+    if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
         
-        [self drawRectengaleInImage:image forFaceRects:faceRects];
-        
-        if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
-            
-            [self.delegate detectedFaceWithUnitCGRects:[self getUnitCGRectListForDetectedFaces:faceRects] withUIImages:[self getUIImageListForDetectedFaces:faceRects fromImage:image]];
-        }
+        [self.delegate detectedFaceWithUnitCGRects:[self getUnitCGRectListForDetectedFaces:faceRects] withUIImages:[self getUIImageListForDetectedFaces:faceRects fromImage:image]];
     }
 }
 
