@@ -14,6 +14,8 @@
 
 @interface FaceDetectorHelper : NSObject
 
+@property (nonatomic, assign) id<FaceDetectorDelegate> delegate;
+
 - (instancetype) initiWithParentView:(UIView *)parentView;
 - (void) startCapture;
 - (void) stopCapture;
