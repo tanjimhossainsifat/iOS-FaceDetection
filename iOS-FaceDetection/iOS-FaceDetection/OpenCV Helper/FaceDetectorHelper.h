@@ -15,9 +15,11 @@
 
 @property (nonatomic, assign) id<FaceDetectorDelegate> delegate;
 
-- (instancetype) initiWithParentView:(UIView *)parentView;
+- (instancetype) initWithParentView:(UIView *)parentView;
 - (void) startCapture;
 - (void) stopCapture;
 - (void) rotateCamera;
+- (void) startRecord;
+- (void) stopRecord;
 
 @end

@@ -21,45 +21,70 @@
     
 }
 
-- (instancetype) initiWithParentView:(UIView *)parentView {
+- (instancetype) initWithParentView:(UIView *)parentView {
     
-    videoCamera = [[CvVideoCamera alloc] initWithParentView:parentView];
-    videoCamera.delegate = self;
-    videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
-    videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    videoCamera.defaultFPS = 24;
-    videoCamera.grayscaleMode = NO;
+    [self initCameraWithParentView:parentView capturingFeedFromBackCamera:YES];
     
     NSString *faceascadePath = [[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_alt2" ofType:@"xml"];
-    CFIndex faceCascadeLength = 2048;
-    char *faceCascadeName = (char *) malloc(faceCascadeLength *sizeof(char));
-    CFStringGetFileSystemRepresentation((CFStringRef)faceascadePath, faceCascadeName, faceCascadeLength);
-    
-    bool isFaceDetectorLoaded = faceDetector.load(faceCascadeName);
+    bool isFaceDetectorLoaded = faceDetector.load([faceascadePath UTF8String]);
     NSLog(@"Face Detector loaded successfully");
-    
-    free(faceCascadeName);
    
     return self;
 }
 
+- (void) initCameraWithParentView:(UIView *)parentView capturingFeedFromBackCamera:(BOOL) shouldUseBackCamera{
+    
+    videoCamera = [[CvVideoCamera alloc] initWithParentView:parentView];
+    videoCamera.delegate = self;
+    if(shouldUseBackCamera)
+        videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
+    else
+        videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
+    videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
+    videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
+    videoCamera.defaultFPS = 30;
+    videoCamera.grayscaleMode = NO;
+}
+
 - (void) startCapture {
+    
     [videoCamera start];
+    
 }
 - (void) stopCapture {
+    
     [videoCamera stop];
 }
 
 - (void) rotateCamera {
+   
+    if(videoCamera.recordVideo == NO)
+        [videoCamera switchCameras];
+}
+
+- (void) startRecord {
+    
     [videoCamera stop];
-    if(videoCamera.defaultAVCaptureDevicePosition == AVCaptureDevicePositionFront) {
-        videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
+    
+    if(videoCamera.defaultAVCaptureDevicePosition == AVCaptureDevicePositionBack) {
+        [self initCameraWithParentView:videoCamera.parentView capturingFeedFromBackCamera:YES];
     }
     else {
-        videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
+        [self initCameraWithParentView:videoCamera.parentView capturingFeedFromBackCamera:NO];
+        
     }
+    videoCamera.recordVideo = YES;
     [videoCamera start];
+    
+}
+
+- (void) stopRecord {
+
+    [videoCamera stop];
+    [videoCamera saveVideo];
+    videoCamera.recordVideo = NO;
+    [videoCamera start];
+    
 }
 
 #pragma mark - CvVideoCameraDelegate method
@@ -67,16 +92,15 @@
     
     //1. Compress Image
     cv::Mat compressedImage = [self compressImage:image];
-    
+        
     //2.Get Face Rects from the compressed image
     std::vector<cv::Rect>faceRects = [self getDetectedFaceRectsInImage:compressedImage];
-   
+        
     //3. Draw rectangle around image if necessary
 //   [self drawRectengaleInImage:image forFaceRects:faceRects];
-    
     //4. Call delegate method
     if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
-        
+            
         [self.delegate detectedFaceWithUnitCGRects:[self getUnitCGRectListForDetectedFaces:faceRects] withUIImages:[self getUIImageListForDetectedFaces:faceRects fromImage:image]];
     }
 }

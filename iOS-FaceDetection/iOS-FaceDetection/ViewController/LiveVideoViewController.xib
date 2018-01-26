@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveVideoViewController">
             <connections>
                 <outlet property="imageView" destination="6cB-wx-JMd" id="dgz-zB-te2"/>
+                <outlet property="recordButton" destination="iaC-1l-4RL" id="KGU-Jf-hLI"/>
                 <outlet property="rotateButton" destination="bjQ-2s-DTJ" id="apL-UM-wgC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -35,6 +36,18 @@
                         <action selector="onRotateButton:" destination="-1" eventType="touchUpInside" id="R1t-Wk-qhr"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaC-1l-4RL">
+                    <rect key="frame" x="157.5" y="592" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="C6G-hn-J7d"/>
+                        <constraint firstAttribute="height" constant="60" id="Es4-kt-DNV"/>
+                    </constraints>
+                    <state key="normal" title="Start"/>
+                    <state key="selected" title="Stop"/>
+                    <connections>
+                        <action selector="onRecordButton:" destination="-1" eventType="touchUpInside" id="4Bd-Ob-rgj"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -43,12 +56,14 @@
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8D5-nB-nnO"/>
                 <constraint firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" id="MXf-dH-LcO"/>
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UjJ-p4-bAO"/>
+                <constraint firstItem="iaC-1l-4RL" firstAttribute="centerY" secondItem="bjQ-2s-DTJ" secondAttribute="centerY" id="VYU-0z-iCG"/>
                 <constraint firstItem="bjQ-2s-DTJ" firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" constant="-20" id="nsn-GJ-MVN"/>
+                <constraint firstItem="iaC-1l-4RL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zt6-Qj-p6T"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
     <resources>
-        <image name="rotate" width="128" height="128"/>
+        <image name="rotate" width="29" height="25"/>
     </resources>
 </document>
