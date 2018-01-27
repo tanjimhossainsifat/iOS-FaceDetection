@@ -45,6 +45,18 @@
     }
 }
 
+- (IBAction)onEditButton:(id)sender {
+    NSMutableArray *imageList =  [[NSMutableArray alloc] init];
+    UIImage *cage = [UIImage imageNamed:@"cage.png"];
+    UIImage *toby = [UIImage imageNamed:@"toby.png"];
+    UIImage *will = [UIImage imageNamed:@"will.png"];
+    [imageList addObject:cage];
+    [imageList addObject:will];
+    [imageList addObject:toby];
+    
+    [self.faceDetectorHelper replaceDetectedFaceWithImageList:imageList];
+}
+
 #pragma mark - FaceDetectorDelegate methods
 
 - (void) detectedFaceWithUnitCGRects:(NSArray *) unitRects withUIImages: (NSArray *) images {

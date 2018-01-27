@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E1D52BC201BA15600C176EF /* toby.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52B9201BA15600C176EF /* toby.png */; };
+		0E1D52BD201BA15600C176EF /* will.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52BA201BA15600C176EF /* will.png */; };
+		0E1D52BE201BA15600C176EF /* cage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52BB201BA15600C176EF /* cage.png */; };
 		0E42BC54201783F400C449DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC53201783F400C449DF /* AppDelegate.m */; };
 		0E42BC5C201783F400C449DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E42BC5B201783F400C449DF /* Assets.xcassets */; };
 		0E42BC62201783F500C449DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC61201783F500C449DF /* main.m */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E1D52B9201BA15600C176EF /* toby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toby.png; sourceTree = "<group>"; };
+		0E1D52BA201BA15600C176EF /* will.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = will.png; sourceTree = "<group>"; };
+		0E1D52BB201BA15600C176EF /* cage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cage.png; sourceTree = "<group>"; };
 		0E42BC4F201783F400C449DF /* iOS-FaceDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-FaceDetection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E42BC52201783F400C449DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0E42BC53201783F400C449DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -45,6 +51,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E1D52B7201B9CA200C176EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0E1D52B8201B9CAB00C176EF /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0E1D52B8201B9CAB00C176EF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0E1D52BB201BA15600C176EF /* cage.png */,
+				0E1D52B9201BA15600C176EF /* toby.png */,
+				0E1D52BA201BA15600C176EF /* will.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		0E42BC46201783F400C449DF = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +88,7 @@
 		0E42BC51201783F400C449DF /* iOS-FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
+				0E1D52B7201B9CA200C176EF /* Resources */,
 				0E4C20F42017C15A00456104 /* Supporting Files */,
 				0E4C20F02017C12400456104 /* OpenCV Helper */,
 				0E42BC6E201784B400C449DF /* ViewController */,
@@ -163,10 +188,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E1D52BE201BA15600C176EF /* cage.png in Resources */,
 				0EBD966920198D9300109A48 /* haarcascade_frontalface_alt2.xml in Resources */,
+				0E1D52BC201BA15600C176EF /* toby.png in Resources */,
 				0E42BC73201784C800C449DF /* LiveVideoViewController.xib in Resources */,
 				0E9F6B4D201A055B00FFE879 /* Launch Screen.storyboard in Resources */,
 				0E42BC5C201783F400C449DF /* Assets.xcassets in Resources */,
+				0E1D52BD201BA15600C176EF /* will.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +333,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tanjimhossainsifat.iOS-FaceDetection";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -323,6 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tanjimhossainsifat.iOS-FaceDetection";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

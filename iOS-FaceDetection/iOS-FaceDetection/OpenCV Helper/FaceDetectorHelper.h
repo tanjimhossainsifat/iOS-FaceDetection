@@ -22,4 +22,5 @@
 - (void) startRecord;
 - (void) stopRecord;
 
+- (void) replaceDetectedFaceWithImageList:(NSArray<UIImage *> *) imageList;
 @end

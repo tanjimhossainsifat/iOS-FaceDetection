@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LiveVideoViewController">
             <connections>
+                <outlet property="editButton" destination="RPY-Co-zaP" id="OP1-75-ygk"/>
                 <outlet property="imageView" destination="6cB-wx-JMd" id="dgz-zB-te2"/>
                 <outlet property="recordButton" destination="iaC-1l-4RL" id="KGU-Jf-hLI"/>
                 <outlet property="rotateButton" destination="bjQ-2s-DTJ" id="apL-UM-wgC"/>
@@ -48,6 +49,17 @@
                         <action selector="onRecordButton:" destination="-1" eventType="touchUpInside" id="4Bd-Ob-rgj"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPY-Co-zaP">
+                    <rect key="frame" x="20" y="597" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Box-7K-pmo"/>
+                        <constraint firstAttribute="width" constant="50" id="fX7-M2-raX"/>
+                    </constraints>
+                    <state key="normal" image="edit"/>
+                    <connections>
+                        <action selector="onEditButton:" destination="-1" eventType="touchUpInside" id="XRm-VM-bA3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -55,8 +67,10 @@
                 <constraint firstItem="bjQ-2s-DTJ" firstAttribute="trailing" secondItem="6cB-wx-JMd" secondAttribute="trailing" constant="-20" id="5CI-bv-qMS"/>
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8D5-nB-nnO"/>
                 <constraint firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" id="MXf-dH-LcO"/>
+                <constraint firstItem="RPY-Co-zaP" firstAttribute="centerY" secondItem="bjQ-2s-DTJ" secondAttribute="centerY" id="S01-N9-qDc"/>
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UjJ-p4-bAO"/>
                 <constraint firstItem="iaC-1l-4RL" firstAttribute="centerY" secondItem="bjQ-2s-DTJ" secondAttribute="centerY" id="VYU-0z-iCG"/>
+                <constraint firstItem="RPY-Co-zaP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="fmr-fH-DjY"/>
                 <constraint firstItem="bjQ-2s-DTJ" firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" constant="-20" id="nsn-GJ-MVN"/>
                 <constraint firstItem="iaC-1l-4RL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zt6-Qj-p6T"/>
             </constraints>
@@ -64,6 +78,7 @@
         </view>
     </objects>
     <resources>
+        <image name="edit" width="256" height="256"/>
         <image name="rotate" width="29" height="25"/>
     </resources>
 </document>

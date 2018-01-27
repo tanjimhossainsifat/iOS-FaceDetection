@@ -6,6 +6,7 @@
 //  Copyright © 2018 Tanjim Hossain. All rights reserved.
 //
 #import <opencv2/videoio/cap_ios.h>
+#import <opencv2/imgcodecs/ios.h>
 #import "FaceDetectorHelper.h"
 
 #define CompressionRatio 2.0
@@ -19,8 +20,11 @@
     CvVideoCamera *videoCamera;
     cv::CascadeClassifier faceDetector;
     
+    std::vector<cv::Mat> replacedFaceImages;
+    
 }
 
+#pragma mark - Video Recorder methods
 - (instancetype) initWithParentView:(UIView *)parentView {
     
     [self initCameraWithParentView:parentView capturingFeedFromBackCamera:YES];
@@ -87,6 +91,21 @@
     
 }
 
+#pragma mark - Extra operations on detected faces
+
+- (void) replaceDetectedFaceWithImageList:(NSArray<UIImage *> *) imageList {
+    
+    std::vector<cv::Mat> tempReplacedFaceImage;
+    for(UIImage *eachUIImage in imageList) {
+        cv::Mat img;
+        UIImageToMat(eachUIImage, img,true);
+        cv::cvtColor(img, img, cv::COLOR_BGRA2RGBA);
+        tempReplacedFaceImage.push_back(img);
+    }
+    
+    replacedFaceImages = tempReplacedFaceImage;
+}
+
 #pragma mark - CvVideoCameraDelegate method
 - (void)processImage:(cv::Mat&)image {
     
@@ -98,11 +117,15 @@
         
     //3. Draw rectangle around image if necessary
 //   [self drawRectengaleInImage:image forFaceRects:faceRects];
+    
     //4. Call delegate method
     if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
             
         [self.delegate detectedFaceWithUnitCGRects:[self getUnitCGRectListForDetectedFaces:faceRects] withUIImages:[self getUIImageListForDetectedFaces:faceRects fromImage:image]];
     }
+    
+    //5. Draw replaced images for detected images
+    [self drawReplacedImagesInImage:image forFaceRects:faceRects];
 }
 
 #pragma mark - Private methods
@@ -137,6 +160,19 @@
     }
 }
 
+- (void) drawReplacedImagesInImage:(cv::Mat&) image forFaceRects:(std::vector<cv::Rect>)faceRects {
+    
+    if(replacedFaceImages.size() == 0)
+        return;
+    
+    for (int i = 0; i< faceRects.size(); i++) {
+        cv::Rect eachFaceRect = faceRects[i];
+        cv::Rect roi( cv::Point(eachFaceRect.x*CompressionRatio,eachFaceRect.y*CompressionRatio), cv::Size(eachFaceRect.width*CompressionRatio,eachFaceRect.height*CompressionRatio) );
+        cv::Mat replacedImage = replacedFaceImages[i%replacedFaceImages.size()];
+        overlayImage(image, replacedImage, image, roi);
+    }
+}
+
 -(NSArray *) getUnitCGRectListForDetectedFaces:(std::vector<cv::Rect>&)faceRects {
     
     NSMutableArray *faceUnitCGRects = [[NSMutableArray alloc] initWithCapacity:faceRects.size()];
@@ -164,46 +200,61 @@
         
         cv::Mat croppedImage(image,eachFaceRect);
         
-        [faceUIImages addObject:[self UIImageFromCVMat:croppedImage]];
+        [faceUIImages addObject:MatToUIImage(croppedImage)];
     }
     
     return faceUIImages;
 }
 
--(UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
+void overlayImage(const cv::Mat &background, const cv::Mat &overlayImage,
+                  cv::Mat &output, cv::Rect roi)
 {
-    NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
-    CGColorSpaceRef colorSpace;
+    background.copyTo(output);
     
-    if (cvMat.elemSize() == 1) {
-        colorSpace = CGColorSpaceCreateDeviceGray();
-    } else {
-        colorSpace = CGColorSpaceCreateDeviceRGB();
+    cv::Point2i location = cv::Point(roi.x,roi.y);
+    
+    cv::Mat foreground;
+    cv::resize(overlayImage, foreground, roi.size());
+    // start at the row indicated by location, or at row 0 if location.y is negative.
+    for(int y = std::max(location.y , 0); y < background.rows; ++y)
+    {
+        int fY = y - location.y; // because of the translation
+        
+        // we are done of we have processed all rows of the foreground image.
+        if(fY >= foreground.rows)
+            break;
+        
+        // start at the column indicated by location,
+        
+        // or at column 0 if location.x is negative.
+        for(int x = std::max(location.x, 0); x < background.cols; ++x)
+        {
+            int fX = x - location.x; // because of the translation.
+            
+            // we are done with this row if the column is outside of the foreground image.
+            if(fX >= foreground.cols)
+                break;
+            
+            // determine the opacity of the foregrond pixel, using its fourth (alpha) channel.
+            double opacity =
+            ((double)foreground.data[fY * foreground.step + fX * foreground.channels() + 3])
+            
+            / 255.;
+            
+            
+            // and now combine the background and foreground pixel, using the opacity,
+            
+            // but only if opacity > 0.
+            for(int c = 0; opacity > 0 && c < output.channels(); ++c)
+            {
+                unsigned char foregroundPx =
+                foreground.data[fY * foreground.step + fX * foreground.channels() + c];
+                unsigned char backgroundPx =
+                background.data[y * background.step + x * background.channels() + c];
+                output.data[y*output.step + output.channels()*x + c] =
+                backgroundPx * (1.-opacity) + foregroundPx * opacity;
+            }
+        }
     }
-    
-    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
-    
-    // Creating CGImage from cv::Mat
-    CGImageRef imageRef = CGImageCreate(cvMat.cols,                                 //width
-                                        cvMat.rows,                                 //height
-                                        8,                                          //bits per component
-                                        8 * cvMat.elemSize(),                       //bits per pixel
-                                        cvMat.step[0],                            //bytesPerRow
-                                        colorSpace,                                 //colorspace
-                                        kCGImageAlphaNone|kCGBitmapByteOrderDefault,// bitmap info
-                                        provider,                                   //CGDataProviderRef
-                                        NULL,                                       //decode
-                                        false,                                      //should interpolate
-                                        kCGRenderingIntentDefault                   //intent
-                                        );
-    
-    
-    // Getting UIImage from CGImage
-    UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    CGDataProviderRelease(provider);
-    CGColorSpaceRelease(colorSpace);
-    
-    return finalImage;
 }
 @end
