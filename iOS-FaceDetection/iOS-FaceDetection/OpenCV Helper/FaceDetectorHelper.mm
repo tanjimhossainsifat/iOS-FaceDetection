@@ -72,7 +72,7 @@
     std::vector<cv::Rect>faceRects = [self getDetectedFaceRectsInImage:compressedImage];
    
     //3. Draw rectangle around image if necessary
-   // [self drawRectengaleInImage:image forFaceRects:faceRects];
+//   [self drawRectengaleInImage:image forFaceRects:faceRects];
     
     //4. Call delegate method
     if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
@@ -121,6 +121,7 @@
         
         cv::Rect eachFaceRect = faceRects[i];
         
+        //In PotraitMode, Width = 480, Height = 640
         CGRect eachUnitCGRect = CGRectMake((eachFaceRect.x*CompressionRatio)/480, (eachFaceRect.y*CompressionRatio)/640, (eachFaceRect.width*CompressionRatio)/480, (eachFaceRect.height*CompressionRatio)/640);
         
         [faceUnitCGRects addObject:[NSValue valueWithCGRect:eachUnitCGRect]];

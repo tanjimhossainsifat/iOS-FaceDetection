@@ -15,7 +15,8 @@
 @end
 
 @implementation LiveVideoViewController {
-    UIImageView *topImageView;
+    
+    NSMutableArray *topImageViewList;
 }
 
 - (void)viewDidLoad {
@@ -24,7 +25,7 @@
     self.faceDetectorHelper = [[FaceDetectorHelper alloc] initiWithParentView:self.imageView];
     self.faceDetectorHelper.delegate = self;
     
-    topImageView = [[UIImageView alloc] init];
+    topImageViewList = [[NSMutableArray alloc] init];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -41,27 +42,35 @@
 
 - (void) detectedFaceWithUnitCGRects:(NSArray *) unitRects withUIImages: (NSArray *) images {
     
-    if(unitRects.count > 0) {
-        
-        for(NSValue *eachUnitRectValue in unitRects) {
-            
-            CGRect eachUnitRect = [eachUnitRectValue CGRectValue];
-            CGRect eachRect = CGRectMake(eachUnitRect.origin.x*self.imageView.frame.size.width, eachUnitRect.origin.y*self.imageView.frame.size.height, eachUnitRect.size.width*self.imageView.frame.size.width, eachUnitRect.size.height*self.imageView.frame.size.height);
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                topImageView.image = [UIImage imageNamed:@"anonymous"];
-                [topImageView setFrame:eachRect];
-                [self.imageView insertSubview:topImageView atIndex:self.imageView.subviews.count];
-            });
-            
-        }
-    }
-    else {
-        
+    for(UIImageView *topImageView in topImageViewList) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [topImageView removeFromSuperview];
         });
     }
     
+    while(topImageViewList.count < unitRects.count) {
+        UIImageView *topImageView = [[UIImageView alloc] init];
+        topImageView.image = [UIImage imageNamed:@"anonymous"];
+        [topImageViewList addObject:topImageView];
+    }
+    
+    for(int i = 0; i<unitRects.count; i++) {
+        
+        NSValue *eachUnitRectValue = unitRects[i];
+        CGRect eachUnitRect = [eachUnitRectValue CGRectValue];
+        CGFloat verticalExpansion = eachUnitRect.size.height*self.imageView.frame.size.height*0.08;
+        CGFloat horizontalCompression = eachUnitRect.size.width*self.imageView.frame.size.width*0.08;
+        CGRect eachRect = CGRectMake(eachUnitRect.origin.x*self.imageView.frame.size.width + horizontalCompression, eachUnitRect.origin.y*self.imageView.frame.size.height - verticalExpansion, eachUnitRect.size.width*self.imageView.frame.size.width - horizontalCompression*2, eachUnitRect.size.height*self.imageView.frame.size.height + verticalExpansion*2);
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImageView *topImageView = [topImageViewList objectAtIndex:i];
+            [topImageView setFrame:eachRect];
+            [self.imageView addSubview:topImageView];
+        });
+        
+    }
+    
 }
 @end
+
