@@ -37,14 +37,14 @@
                         <action selector="onRotateButton:" destination="-1" eventType="touchUpInside" id="R1t-Wk-qhr"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaC-1l-4RL">
-                    <rect key="frame" x="157.5" y="592" width="60" height="60"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaC-1l-4RL">
+                    <rect key="frame" x="158" y="592.5" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="C6G-hn-J7d"/>
                         <constraint firstAttribute="height" constant="60" id="Es4-kt-DNV"/>
                     </constraints>
-                    <state key="normal" title="Start"/>
-                    <state key="selected" title="Stop"/>
+                    <state key="normal" image="record_up"/>
+                    <state key="selected" image="record_down"/>
                     <connections>
                         <action selector="onRecordButton:" destination="-1" eventType="touchUpInside" id="4Bd-Ob-rgj"/>
                     </connections>
@@ -79,6 +79,8 @@
     </objects>
     <resources>
         <image name="edit" width="256" height="256"/>
+        <image name="record_down" width="75" height="75"/>
+        <image name="record_up" width="75" height="75"/>
         <image name="rotate" width="29" height="25"/>
     </resources>
 </document>
