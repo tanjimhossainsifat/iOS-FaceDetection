@@ -26,36 +26,45 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6cB-wx-JMd">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjQ-2s-DTJ">
-                    <rect key="frame" x="305" y="597" width="50" height="50"/>
+                <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezE-3d-FYH" userLabel="Button Background View">
+                    <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="avG-Jv-L6t"/>
-                        <constraint firstAttribute="width" constant="50" id="xMt-pV-q9m"/>
+                        <constraint firstAttribute="height" constant="80" id="iP0-v8-NcB"/>
                     </constraints>
-                    <state key="normal" image="rotate"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjQ-2s-DTJ">
+                    <rect key="frame" x="315" y="607" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="avG-Jv-L6t"/>
+                        <constraint firstAttribute="width" constant="40" id="xMt-pV-q9m"/>
+                    </constraints>
+                    <state key="normal" image="camera_rotate_up"/>
+                    <state key="highlighted" image="camera_rotate_down"/>
                     <connections>
                         <action selector="onRotateButton:" destination="-1" eventType="touchUpInside" id="R1t-Wk-qhr"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaC-1l-4RL">
-                    <rect key="frame" x="158" y="592.5" width="60" height="60"/>
+                    <rect key="frame" x="163" y="602.5" width="50" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="C6G-hn-J7d"/>
-                        <constraint firstAttribute="height" constant="60" id="Es4-kt-DNV"/>
+                        <constraint firstAttribute="width" constant="50" id="C6G-hn-J7d"/>
+                        <constraint firstAttribute="height" constant="50" id="Es4-kt-DNV"/>
                     </constraints>
-                    <state key="normal" image="record_up"/>
-                    <state key="selected" image="record_down"/>
+                    <state key="normal" image="video_record_up"/>
+                    <state key="selected" image="video_record_down"/>
                     <connections>
                         <action selector="onRecordButton:" destination="-1" eventType="touchUpInside" id="4Bd-Ob-rgj"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPY-Co-zaP">
-                    <rect key="frame" x="20" y="597" width="50" height="50"/>
+                    <rect key="frame" x="20" y="607" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Box-7K-pmo"/>
-                        <constraint firstAttribute="width" constant="50" id="fX7-M2-raX"/>
+                        <constraint firstAttribute="height" constant="40" id="Box-7K-pmo"/>
+                        <constraint firstAttribute="width" constant="40" id="fX7-M2-raX"/>
                     </constraints>
-                    <state key="normal" image="edit"/>
+                    <state key="normal" image="edit_up"/>
+                    <state key="selected" image="edit_down"/>
                     <connections>
                         <action selector="onEditButton:" destination="-1" eventType="touchUpInside" id="XRm-VM-bA3"/>
                     </connections>
@@ -66,21 +75,26 @@
                 <constraint firstAttribute="trailing" secondItem="6cB-wx-JMd" secondAttribute="trailing" id="26k-9H-XKU"/>
                 <constraint firstItem="bjQ-2s-DTJ" firstAttribute="trailing" secondItem="6cB-wx-JMd" secondAttribute="trailing" constant="-20" id="5CI-bv-qMS"/>
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8D5-nB-nnO"/>
+                <constraint firstItem="bjQ-2s-DTJ" firstAttribute="centerY" secondItem="ezE-3d-FYH" secondAttribute="centerY" id="DYz-OF-gXh"/>
                 <constraint firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" id="MXf-dH-LcO"/>
+                <constraint firstAttribute="trailing" secondItem="ezE-3d-FYH" secondAttribute="trailing" id="NoU-U7-EoB"/>
                 <constraint firstItem="RPY-Co-zaP" firstAttribute="centerY" secondItem="bjQ-2s-DTJ" secondAttribute="centerY" id="S01-N9-qDc"/>
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UjJ-p4-bAO"/>
                 <constraint firstItem="iaC-1l-4RL" firstAttribute="centerY" secondItem="bjQ-2s-DTJ" secondAttribute="centerY" id="VYU-0z-iCG"/>
                 <constraint firstItem="RPY-Co-zaP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="fmr-fH-DjY"/>
-                <constraint firstItem="bjQ-2s-DTJ" firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" constant="-20" id="nsn-GJ-MVN"/>
+                <constraint firstItem="ezE-3d-FYH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oPh-Pd-b5h"/>
+                <constraint firstAttribute="bottom" secondItem="ezE-3d-FYH" secondAttribute="bottom" id="ukL-QF-UJf"/>
                 <constraint firstItem="iaC-1l-4RL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zt6-Qj-p6T"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
     <resources>
-        <image name="edit" width="256" height="256"/>
-        <image name="record_down" width="75" height="75"/>
-        <image name="record_up" width="75" height="75"/>
-        <image name="rotate" width="29" height="25"/>
+        <image name="camera_rotate_down" width="50" height="50"/>
+        <image name="camera_rotate_up" width="50" height="50"/>
+        <image name="edit_down" width="50" height="50"/>
+        <image name="edit_up" width="50" height="50"/>
+        <image name="video_record_down" width="50" height="50"/>
+        <image name="video_record_up" width="50" height="50"/>
     </resources>
 </document>
