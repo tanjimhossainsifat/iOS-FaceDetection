@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E1AD7DF201F16DA00F73DBE /* FDCvVideoCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E1AD7DE201F16DA00F73DBE /* FDCvVideoCamera.mm */; };
 		0E1D52BC201BA15600C176EF /* toby.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52B9201BA15600C176EF /* toby.png */; };
 		0E1D52BD201BA15600C176EF /* will.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52BA201BA15600C176EF /* will.png */; };
 		0E1D52BE201BA15600C176EF /* cage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52BB201BA15600C176EF /* cage.png */; };
@@ -22,8 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E1AD7DD201F16DA00F73DBE /* FDCvVideoCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDCvVideoCamera.h; sourceTree = "<group>"; };
-		0E1AD7DE201F16DA00F73DBE /* FDCvVideoCamera.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FDCvVideoCamera.mm; sourceTree = "<group>"; };
 		0E1D52B9201BA15600C176EF /* toby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toby.png; sourceTree = "<group>"; };
 		0E1D52BA201BA15600C176EF /* will.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = will.png; sourceTree = "<group>"; };
 		0E1D52BB201BA15600C176EF /* cage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cage.png; sourceTree = "<group>"; };
@@ -119,8 +116,6 @@
 			children = (
 				0E4C20F12017C14A00456104 /* FaceDetectorHelper.h */,
 				0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */,
-				0E1AD7DD201F16DA00F73DBE /* FDCvVideoCamera.h */,
-				0E1AD7DE201F16DA00F73DBE /* FDCvVideoCamera.mm */,
 			);
 			path = "OpenCV Helper";
 			sourceTree = "<group>";
@@ -214,7 +209,6 @@
 				0E42BC72201784C800C449DF /* LiveVideoViewController.m in Sources */,
 				0E4C20F32017C14A00456104 /* FaceDetectorHelper.mm in Sources */,
 				0E42BC54201783F400C449DF /* AppDelegate.m in Sources */,
-				0E1AD7DF201F16DA00F73DBE /* FDCvVideoCamera.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
