@@ -23,14 +23,13 @@
     
 }
 
-#pragma mark - Video Recorder methods
+#pragma mark - Video Camera methods
 - (instancetype) initWithParentView:(UIView *)parentView {
     
-    [self initCameraWithParentView:parentView capturingFeedFromBackCamera:YES];
+    [self initCameraWithParentView:parentView capturingFeedFromBackCamera:NO];
     
     NSString *faceascadePath = [[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_alt2" ofType:@"xml"];
-    bool isFaceDetectorLoaded = faceDetector.load([faceascadePath UTF8String]);
-    NSLog(@"Face Detector loaded successfully");
+    faceDetector.load([faceascadePath UTF8String]);
    
     return self;
 }
@@ -115,21 +114,15 @@
     std::vector<cv::Rect>faceRects = [self getDetectedFaceRectsInImage:compressedImage];
         
     //3. Draw rectangle around image if necessary
-//   [self drawRectengaleInImage:image forFaceRects:faceRects];
+    //[self drawRectengaleInImage:image forFaceRects:faceRects];
     
-    //4. Call delegate method
-//    if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
-//
-//        [self.delegate detectedFaceWithUnitCGRects:[self getUnitCGRectListForDetectedFaces:faceRects] withUIImages:[self getUIImageListForDetectedFaces:faceRects fromImage:image]];
-//    }
-    
-    //5. Draw replaced images for detected images
+    //4. Draw replaced images for detected images
     [self drawReplacedImagesInImage:image forFaceRects:faceRects];
 }
 
 #pragma mark - Private methods
 
-- (cv::Mat) compressImage: (cv::Mat&) image {
+- (cv::Mat) compressImage: (const cv::Mat&) image {
     
     cv::Mat grayImage;
     cv::cvtColor(image, grayImage, cv::COLOR_RGB2GRAY); //Converted color image to grayscale
@@ -141,11 +134,18 @@
     return compressedImage;
 }
 
-- (std::vector<cv::Rect>) getDetectedFaceRectsInImage:(cv::Mat&) image {
+- (std::vector<cv::Rect>) getDetectedFaceRectsInImage:(const cv::Mat&) image {
+    
+    std::vector<cv::Rect> tempRects;
+    
+    faceDetector.detectMultiScale(getDeviceOrientationedCapturedImage(image), tempRects);
     
     std::vector<cv::Rect> faceRects;
     
-    faceDetector.detectMultiScale(image, faceRects);
+    for(int i = 0; i< tempRects.size(); i++) {
+        
+        faceRects.push_back(getDeviceOrientationedRectForImage(image, tempRects[i]));
+    }
     
     return faceRects;
 }
@@ -168,41 +168,8 @@
         cv::Rect eachFaceRect = faceRects[i];
         cv::Rect roi( cv::Point(eachFaceRect.x*CompressionRatio - eachFaceRect.width*CompressionRatio*0.25,eachFaceRect.y*CompressionRatio - eachFaceRect.height*CompressionRatio*0.5), cv::Size(eachFaceRect.width*CompressionRatio*1.5,eachFaceRect.height*CompressionRatio*2) );
         cv::Mat replacedImage = replacedFaceImages[i%replacedFaceImages.size()];
-        overlayImage(image, replacedImage, image, roi);
+        overlayImage(image, getDeviceOrientationedReplacedImage(replacedImage), image, roi);
     }
-}
-
--(NSArray *) getUnitCGRectListForDetectedFaces:(std::vector<cv::Rect>&)faceRects {
-    
-    NSMutableArray *faceUnitCGRects = [[NSMutableArray alloc] initWithCapacity:faceRects.size()];
-    
-    for (int i =0; i<faceRects.size(); i++) {
-        
-        cv::Rect eachFaceRect = faceRects[i];
-        
-        //In PotraitMode, Width = 480, Height = 640
-        CGRect eachUnitCGRect = CGRectMake((eachFaceRect.x*CompressionRatio)/480, (eachFaceRect.y*CompressionRatio)/640, (eachFaceRect.width*CompressionRatio)/480, (eachFaceRect.height*CompressionRatio)/640);
-        
-        [faceUnitCGRects addObject:[NSValue valueWithCGRect:eachUnitCGRect]];
-    }
-    
-    return faceUnitCGRects;
-}
-
--(NSArray *) getUIImageListForDetectedFaces:(std::vector<cv::Rect>&)faceRects fromImage:(cv::Mat&)image{
-    
-    NSMutableArray *faceUIImages = [[NSMutableArray alloc] initWithCapacity:faceRects.size()];
-    
-    for (int i =0; i<faceRects.size(); i++) {
-        
-        cv::Rect eachFaceRect = faceRects[i];
-        
-        cv::Mat croppedImage(image,eachFaceRect);
-        
-        [faceUIImages addObject:MatToUIImage(croppedImage)];
-    }
-    
-    return faceUIImages;
 }
 
 void overlayImage(const cv::Mat &background, const cv::Mat &overlayImage,
@@ -255,5 +222,104 @@ void overlayImage(const cv::Mat &background, const cv::Mat &overlayImage,
             }
         }
     }
+}
+
+#pragma mark - Device Orientation related methods
+
+cv::Mat getDeviceOrientationedCapturedImage(const cv::Mat image) {
+    cv::Mat rotatedImage;
+    
+    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
+    
+    switch (deviceOrientation) {
+        case UIDeviceOrientationPortrait:
+        case UIDeviceOrientationFaceDown:
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationUnknown:
+            rotatedImage = image.clone();
+            break;
+        
+        case UIDeviceOrientationLandscapeLeft:
+            cv::rotate(image, rotatedImage, cv::ROTATE_90_COUNTERCLOCKWISE);
+            break;
+            
+        case UIDeviceOrientationLandscapeRight:
+            cv::rotate(image, rotatedImage, cv::ROTATE_90_CLOCKWISE);
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            cv::rotate(image, rotatedImage, cv::ROTATE_180);
+            break;
+    }
+    
+    return rotatedImage;
+}
+
+cv::Mat getDeviceOrientationedReplacedImage(const cv::Mat image) {
+    cv::Mat rotatedImage;
+    
+    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
+    
+    switch (deviceOrientation) {
+        case UIDeviceOrientationPortrait:
+        case UIDeviceOrientationFaceDown:
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationUnknown:
+            rotatedImage = image.clone();
+            break;
+            
+        case UIDeviceOrientationLandscapeLeft:
+            cv::rotate(image, rotatedImage, cv::ROTATE_90_CLOCKWISE);
+            break;
+            
+        case UIDeviceOrientationLandscapeRight:
+            cv::rotate(image, rotatedImage, cv::ROTATE_90_COUNTERCLOCKWISE);
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            cv::rotate(image, rotatedImage, cv::ROTATE_180);
+            break;
+    }
+    
+    return rotatedImage;
+}
+
+cv::Rect getDeviceOrientationedRectForImage(const cv::Mat image, const cv::Rect &roi) {
+    
+    cv::Rect modifiedRoi;
+    
+    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
+    switch (deviceOrientation) {
+        case UIDeviceOrientationPortrait:
+        case UIDeviceOrientationFaceDown:
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationUnknown:
+            modifiedRoi = roi;
+            break;
+            
+        case UIDeviceOrientationLandscapeLeft:
+            modifiedRoi.x = image.size().width - (roi.y + roi.height);
+            modifiedRoi.y = roi.x;
+            modifiedRoi.width = roi.height;
+            modifiedRoi.height = roi.width;
+            break;
+            
+        case UIDeviceOrientationLandscapeRight:
+            modifiedRoi.x = roi.y;
+            modifiedRoi.y = image.size().height - (roi.x + roi.width);
+            modifiedRoi.width = roi.height;
+            modifiedRoi.height = roi.width;
+            break;
+            
+        case UIDeviceOrientationPortraitUpsideDown:
+            modifiedRoi.x = image.size().width - (roi.x+roi.width);
+            modifiedRoi.y = image.size().height - (roi.y+roi.height);
+            modifiedRoi.width = roi.width;
+            modifiedRoi.height = roi.height;
+            break;
+            
+    }
+    
+    return modifiedRoi;
 }
 @end

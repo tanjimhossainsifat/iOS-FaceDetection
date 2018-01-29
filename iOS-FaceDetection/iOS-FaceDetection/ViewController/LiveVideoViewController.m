@@ -9,7 +9,7 @@
 #import "LiveVideoViewController.h"
 #import "FaceDetectorHelper.h"
 
-@interface LiveVideoViewController ()<FaceDetectorDelegate>
+@interface LiveVideoViewController ()
 
 @property (nonatomic, strong) FaceDetectorHelper *faceDetectorHelper;
 @end
@@ -20,7 +20,6 @@
     [super viewDidLoad];
     
     self.faceDetectorHelper = [[FaceDetectorHelper alloc] initWithParentView:self.imageView];
-    self.faceDetectorHelper.delegate = self;
     
 }
 
@@ -58,30 +57,13 @@
         UIImage *cage = [UIImage imageNamed:@"cage.png"];
         UIImage *toby = [UIImage imageNamed:@"toby.png"];
         UIImage *will = [UIImage imageNamed:@"will.png"];
-        int random = rand();
+        int random = rand()%31;
         if(random%3==0) [imageList addObject:cage];
         else if(random%3==1) [imageList addObject:will];
         else [imageList addObject:toby];
     }
     
-    
     [self.faceDetectorHelper replaceDetectedFaceWithImageList:imageList];
-}
-
-#pragma mark - FaceDetectorDelegate methods
-
-- (void) detectedFaceWithUnitCGRects:(NSArray *) unitRects withUIImages: (NSArray *) images {
-    
-    for(int i = 0; i<unitRects.count; i++) {
-        
-        NSValue *eachUnitRectValue = unitRects[i];
-        CGRect eachUnitRect = [eachUnitRectValue CGRectValue];
-        CGFloat verticalExpansion = eachUnitRect.size.height*self.imageView.frame.size.height*0.08;
-        CGFloat horizontalCompression = eachUnitRect.size.width*self.imageView.frame.size.width*0.08;
-        CGRect eachRect = CGRectMake(eachUnitRect.origin.x*self.imageView.frame.size.width + horizontalCompression, eachUnitRect.origin.y*self.imageView.frame.size.height - verticalExpansion, eachUnitRect.size.width*self.imageView.frame.size.width - horizontalCompression*2, eachUnitRect.size.height*self.imageView.frame.size.height + verticalExpansion*2);
-        
-    }
-    
 }
 @end
 

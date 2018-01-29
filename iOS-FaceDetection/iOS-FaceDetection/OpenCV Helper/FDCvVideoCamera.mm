@@ -48,9 +48,13 @@
         if (previewAspectRatio > videoFeedAspectRatio) {
             float newWidth = bounds.size.height / videoFeedAspectRatio;
             layer.bounds = CGRectMake(0, 0, newWidth, bounds.size.height);
+            self.imageWidth = newWidth;
+            self.imageHeight = bounds.size.height;
         } else {
             float newHeight = bounds.size.width * videoFeedAspectRatio;
             layer.bounds = CGRectMake(0, 0, bounds.size.width, newHeight);
+            self.imageWidth = bounds.size.width;
+            self.imageHeight = newHeight;
         }
     }
 }
