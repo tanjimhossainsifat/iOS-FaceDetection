@@ -46,13 +46,24 @@
 }
 
 - (IBAction)onEditButton:(id)sender {
-    NSMutableArray *imageList =  [[NSMutableArray alloc] init];
-    UIImage *cage = [UIImage imageNamed:@"cage.png"];
-    UIImage *toby = [UIImage imageNamed:@"toby.png"];
-    UIImage *will = [UIImage imageNamed:@"will.png"];
-    [imageList addObject:cage];
-    [imageList addObject:will];
-    [imageList addObject:toby];
+    NSMutableArray *imageList;
+    imageList =  [[NSMutableArray alloc] init];
+    
+    if([self.editButton isSelected]) {
+        [self.editButton setSelected:NO];
+    }
+    else {
+        [self.editButton setSelected:YES];
+        
+        UIImage *cage = [UIImage imageNamed:@"cage.png"];
+        UIImage *toby = [UIImage imageNamed:@"toby.png"];
+        UIImage *will = [UIImage imageNamed:@"will.png"];
+        int random = rand();
+        if(random%3==0) [imageList addObject:cage];
+        else if(random%3==1) [imageList addObject:will];
+        else [imageList addObject:toby];
+    }
+    
     
     [self.faceDetectorHelper replaceDetectedFaceWithImageList:imageList];
 }
