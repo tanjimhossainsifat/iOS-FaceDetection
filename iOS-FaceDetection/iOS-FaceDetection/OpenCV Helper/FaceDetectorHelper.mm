@@ -5,9 +5,8 @@
 //  Created by Tanjim Hossain on 23/1/18.
 //  Copyright © 2018 Tanjim Hossain. All rights reserved.
 //
-#import <opencv2/videoio/cap_ios.h>
-#import <opencv2/imgcodecs/ios.h>
 #import "FaceDetectorHelper.h"
+#import "FDCvVideoCamera.h"
 
 #define CompressionRatio 2.0
 
@@ -17,7 +16,7 @@
 
 @implementation FaceDetectorHelper
 {
-    CvVideoCamera *videoCamera;
+    FDCvVideoCamera *videoCamera;
     cv::CascadeClassifier faceDetector;
     
     std::vector<cv::Mat> replacedFaceImages;
@@ -38,7 +37,7 @@
 
 - (void) initCameraWithParentView:(UIView *)parentView capturingFeedFromBackCamera:(BOOL) shouldUseBackCamera{
     
-    videoCamera = [[CvVideoCamera alloc] initWithParentView:parentView];
+    videoCamera = [[FDCvVideoCamera alloc] initWithParentView:parentView];
     videoCamera.delegate = self;
     if(shouldUseBackCamera)
         videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
@@ -119,10 +118,10 @@
 //   [self drawRectengaleInImage:image forFaceRects:faceRects];
     
     //4. Call delegate method
-    if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
-            
-        [self.delegate detectedFaceWithUnitCGRects:[self getUnitCGRectListForDetectedFaces:faceRects] withUIImages:[self getUIImageListForDetectedFaces:faceRects fromImage:image]];
-    }
+//    if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
+//
+//        [self.delegate detectedFaceWithUnitCGRects:[self getUnitCGRectListForDetectedFaces:faceRects] withUIImages:[self getUIImageListForDetectedFaces:faceRects fromImage:image]];
+//    }
     
     //5. Draw replaced images for detected images
     [self drawReplacedImagesInImage:image forFaceRects:faceRects];
@@ -167,7 +166,7 @@
     
     for (int i = 0; i< faceRects.size(); i++) {
         cv::Rect eachFaceRect = faceRects[i];
-        cv::Rect roi( cv::Point(eachFaceRect.x*CompressionRatio,eachFaceRect.y*CompressionRatio), cv::Size(eachFaceRect.width*CompressionRatio,eachFaceRect.height*CompressionRatio) );
+        cv::Rect roi( cv::Point(eachFaceRect.x*CompressionRatio - eachFaceRect.width*CompressionRatio*0.25,eachFaceRect.y*CompressionRatio - eachFaceRect.height*CompressionRatio*0.5), cv::Size(eachFaceRect.width*CompressionRatio*1.5,eachFaceRect.height*CompressionRatio*2) );
         cv::Mat replacedImage = replacedFaceImages[i%replacedFaceImages.size()];
         overlayImage(image, replacedImage, image, roi);
     }
