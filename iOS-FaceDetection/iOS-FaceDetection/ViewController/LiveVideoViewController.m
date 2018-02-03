@@ -17,13 +17,17 @@
 @property (nonatomic, strong) StickerPool *stickerPool;
 @end
 
-@implementation LiveVideoViewController
+@implementation LiveVideoViewController {
+    NSInteger selectedStickerIndex;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.faceDetectorHelper = [[FaceDetectorHelper alloc] initWithParentView:self.imageView];
+    
     self.stickerPool = [[StickerPool alloc] init];
+    selectedStickerIndex = -1;
     
     [self.stickerCollectionView registerNib:[UINib nibWithNibName:@"StickerCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"StickerCell"];
 }
@@ -94,10 +98,18 @@
     
     NSMutableArray *imageList=[[NSMutableArray alloc] init];
     
-    Sticker *sticker = [[self.stickerPool getAllStickers] objectAtIndex:indexPath.row];
-    if(sticker) {
-        [imageList addObject:sticker.image];
+    if(selectedStickerIndex != indexPath.row) {
+        selectedStickerIndex = indexPath.row;
+        
+        Sticker *sticker = [[self.stickerPool getAllStickers] objectAtIndex:indexPath.row];
+        if(sticker) {
+            [imageList addObject:sticker.image];
+        }
     }
+    else {
+        selectedStickerIndex = -1;
+    }
+    
     
     [self.faceDetectorHelper replaceDetectedFaceWithImageList:imageList];
 }
