@@ -11,6 +11,8 @@
 		0E1D52BC201BA15600C176EF /* toby.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52B9201BA15600C176EF /* toby.png */; };
 		0E1D52BD201BA15600C176EF /* will.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52BA201BA15600C176EF /* will.png */; };
 		0E1D52BE201BA15600C176EF /* cage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52BB201BA15600C176EF /* cage.png */; };
+		0E3A312E2025F89C00C3583F /* Sticker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A312D2025F89C00C3583F /* Sticker.m */; };
+		0E3A31312025FBEE00C3583F /* StickerPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A31302025FBEE00C3583F /* StickerPool.m */; };
 		0E42BC54201783F400C449DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC53201783F400C449DF /* AppDelegate.m */; };
 		0E42BC5C201783F400C449DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E42BC5B201783F400C449DF /* Assets.xcassets */; };
 		0E42BC62201783F500C449DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC61201783F500C449DF /* main.m */; };
@@ -27,6 +29,10 @@
 		0E1D52B9201BA15600C176EF /* toby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toby.png; sourceTree = "<group>"; };
 		0E1D52BA201BA15600C176EF /* will.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = will.png; sourceTree = "<group>"; };
 		0E1D52BB201BA15600C176EF /* cage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cage.png; sourceTree = "<group>"; };
+		0E3A312C2025F89C00C3583F /* Sticker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sticker.h; sourceTree = "<group>"; };
+		0E3A312D2025F89C00C3583F /* Sticker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Sticker.m; sourceTree = "<group>"; };
+		0E3A312F2025FBEE00C3583F /* StickerPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerPool.h; sourceTree = "<group>"; };
+		0E3A31302025FBEE00C3583F /* StickerPool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerPool.m; sourceTree = "<group>"; };
 		0E42BC4F201783F400C449DF /* iOS-FaceDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-FaceDetection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E42BC52201783F400C449DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0E42BC53201783F400C449DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,6 +78,17 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		0E3A312B2025F85500C3583F /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E3A312C2025F89C00C3583F /* Sticker.h */,
+				0E3A312D2025F89C00C3583F /* Sticker.m */,
+				0E3A312F2025FBEE00C3583F /* StickerPool.h */,
+				0E3A31302025FBEE00C3583F /* StickerPool.m */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
 		0E42BC46201783F400C449DF = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +108,7 @@
 		0E42BC51201783F400C449DF /* iOS-FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
+				0E3A312B2025F85500C3583F /* Data Model */,
 				0E1D52B7201B9CA200C176EF /* Resources */,
 				0E4C20F42017C15A00456104 /* Supporting Files */,
 				0E4C20F02017C12400456104 /* OpenCV Helper */,
@@ -211,10 +229,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E42BC62201783F500C449DF /* main.m in Sources */,
+				0E3A31312025FBEE00C3583F /* StickerPool.m in Sources */,
 				0E42BC72201784C800C449DF /* LiveVideoViewController.m in Sources */,
 				0E4C20F32017C14A00456104 /* FaceDetectorHelper.mm in Sources */,
 				0E42BC54201783F400C449DF /* AppDelegate.m in Sources */,
 				0E1AD7DF201F16DA00F73DBE /* FDCvVideoCamera.mm in Sources */,
+				0E3A312E2025F89C00C3583F /* Sticker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
