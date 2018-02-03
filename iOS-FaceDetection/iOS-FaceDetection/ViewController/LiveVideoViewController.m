@@ -36,6 +36,13 @@
     [super viewDidAppear:animated];
     
     [self.faceDetectorHelper startCapture];
+    [self.stickerCollectionView reloadData];
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [self.faceDetectorHelper stopCapture];
 }
 
 - (IBAction)onRotateButton:(id)sender {
@@ -73,7 +80,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return [[self.stickerPool getAllStickers] count];
+    return [[self.stickerPool getAllStickers] count] + 1;
 }
 
 - (StickerCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -85,33 +92,49 @@
         cell = (StickerCollectionViewCell *) [[StickerCollectionViewCell alloc] init];
     }
     
-    Sticker * sticker = [[self.stickerPool getAllStickers] objectAtIndex:indexPath.row];
-    if(sticker) {
-        cell.imageView.image = sticker.image;
+    if(indexPath.row == [[self.stickerPool getAllStickers] count]) { // Last Index
+        cell.imageView.image = [UIImage imageNamed:@"add_new_up"];
+    }
+    else {
+        Sticker * sticker = [[self.stickerPool getAllStickers] objectAtIndex:indexPath.row];
+        if(sticker) {
+            cell.imageView.image = sticker.image;
+        }
     }
     
     return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSMutableArray *imageList=[[NSMutableArray alloc] init];
-    
-    if(selectedStickerIndex != indexPath.row) {
-        selectedStickerIndex = indexPath.row;
-        
-        Sticker *sticker = [[self.stickerPool getAllStickers] objectAtIndex:indexPath.row];
-        if(sticker) {
-            [imageList addObject:sticker.image];
+    if(indexPath.row == [[self.stickerPool getAllStickers] count]) { //Last Index
+        //Write method to add new sticker
+        StickerCollectionViewCell *cell = (StickerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        if(cell) {
+            cell.imageView.image = [UIImage imageNamed:@"add_new_down"];
         }
     }
     else {
-        selectedStickerIndex = -1;
+        
+        NSMutableArray *imageList=[[NSMutableArray alloc] init];
+        
+        if(selectedStickerIndex != indexPath.row) {
+            selectedStickerIndex = indexPath.row;
+            
+            Sticker *sticker = [[self.stickerPool getAllStickers] objectAtIndex:indexPath.row];
+            if(sticker) {
+                [imageList addObject:sticker.image];
+            }
+        }
+        else {
+            selectedStickerIndex = -1;
+        }
+        
+        [self.faceDetectorHelper replaceDetectedFaceWithImageList:imageList];
+        
     }
-    
-    
-    [self.faceDetectorHelper replaceDetectedFaceWithImageList:imageList];
 }
 @end
 
