@@ -8,10 +8,13 @@
 
 #import "LiveVideoViewController.h"
 #import "FaceDetectorHelper.h"
+#import "StickerPool.h"
+#import "StickerCollectionViewCell.h"
 
-@interface LiveVideoViewController ()
+@interface LiveVideoViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) FaceDetectorHelper *faceDetectorHelper;
+@property (nonatomic, strong) StickerPool *stickerPool;
 @end
 
 @implementation LiveVideoViewController
@@ -20,7 +23,9 @@
     [super viewDidLoad];
     
     self.faceDetectorHelper = [[FaceDetectorHelper alloc] initWithParentView:self.imageView];
+    self.stickerPool = [[StickerPool alloc] init];
     
+    [self.stickerCollectionView registerNib:[UINib nibWithNibName:@"StickerCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"StickerCell"];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -45,22 +50,53 @@
 }
 
 - (IBAction)onEditButton:(id)sender {
-    NSMutableArray *imageList;
-    imageList =  [[NSMutableArray alloc] init];
     
     if([self.editButton isSelected]) {
         [self.editButton setSelected:NO];
+        [self.stickerView setHidden:YES];
     }
     else {
         [self.editButton setSelected:YES];
-        
-        UIImage *cage = [UIImage imageNamed:@"cage.png"];
-        UIImage *toby = [UIImage imageNamed:@"toby.png"];
-        UIImage *will = [UIImage imageNamed:@"will.png"];
-        int random = rand()%31;
-        if(random%3==0) [imageList addObject:cage];
-        else if(random%3==1) [imageList addObject:will];
-        else [imageList addObject:toby];
+        [self.stickerView setHidden:NO];
+    }
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return [[self.stickerPool getAllStickers] count];
+}
+
+- (StickerCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    static NSString *stickerCollectionViewCellIdentifier = @"StickerCell";
+    StickerCollectionViewCell *cell = (StickerCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:stickerCollectionViewCellIdentifier forIndexPath:indexPath];
+    
+    if(cell == nil) {
+        cell = (StickerCollectionViewCell *) [[StickerCollectionViewCell alloc] init];
+    }
+    
+    Sticker * sticker = [[self.stickerPool getAllStickers] objectAtIndex:indexPath.row];
+    if(sticker) {
+        cell.imageView.image = sticker.image;
+    }
+    
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSMutableArray *imageList=[[NSMutableArray alloc] init];
+    
+    Sticker *sticker = [[self.stickerPool getAllStickers] objectAtIndex:indexPath.row];
+    if(sticker) {
+        [imageList addObject:sticker.image];
     }
     
     [self.faceDetectorHelper replaceDetectedFaceWithImageList:imageList];

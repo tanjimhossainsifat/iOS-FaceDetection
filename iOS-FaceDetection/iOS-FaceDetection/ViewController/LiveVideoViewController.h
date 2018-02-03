@@ -10,6 +10,8 @@
 
 @interface LiveVideoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIView *stickerView;
+@property (weak, nonatomic) IBOutlet UICollectionView *stickerCollectionView;
 @property (weak, nonatomic) IBOutlet UIButton *rotateButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;

@@ -15,6 +15,8 @@
                 <outlet property="imageView" destination="6cB-wx-JMd" id="dgz-zB-te2"/>
                 <outlet property="recordButton" destination="iaC-1l-4RL" id="KGU-Jf-hLI"/>
                 <outlet property="rotateButton" destination="bjQ-2s-DTJ" id="apL-UM-wgC"/>
+                <outlet property="stickerCollectionView" destination="iYs-qz-9pP" id="8jA-RZ-Mol"/>
+                <outlet property="stickerView" destination="rKw-pW-PHB" id="SQJ-jS-iWy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -69,6 +71,33 @@
                         <action selector="onEditButton:" destination="-1" eventType="touchUpInside" id="XRm-VM-bA3"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKw-pW-PHB">
+                    <rect key="frame" x="0.0" y="517" width="375" height="70"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="iYs-qz-9pP">
+                            <rect key="frame" x="20" y="0.0" width="335" height="70"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5jJ-eN-gze">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="NcY-3c-kPe"/>
+                                <outlet property="delegate" destination="-1" id="5ps-mn-cU5"/>
+                            </connections>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="iYs-qz-9pP" firstAttribute="leading" secondItem="rKw-pW-PHB" secondAttribute="leading" constant="20" id="QvS-4v-CiB"/>
+                        <constraint firstAttribute="height" constant="70" id="TAG-a0-BFe"/>
+                        <constraint firstAttribute="trailing" secondItem="iYs-qz-9pP" secondAttribute="trailing" constant="20" id="gbm-YP-amp"/>
+                        <constraint firstAttribute="bottom" secondItem="iYs-qz-9pP" secondAttribute="bottom" id="oN4-YW-wIm"/>
+                        <constraint firstItem="iYs-qz-9pP" firstAttribute="top" secondItem="rKw-pW-PHB" secondAttribute="top" id="wWy-hy-e3w"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -79,11 +108,14 @@
                 <constraint firstAttribute="bottom" secondItem="6cB-wx-JMd" secondAttribute="bottom" id="MXf-dH-LcO"/>
                 <constraint firstAttribute="trailing" secondItem="ezE-3d-FYH" secondAttribute="trailing" id="NoU-U7-EoB"/>
                 <constraint firstItem="RPY-Co-zaP" firstAttribute="centerY" secondItem="bjQ-2s-DTJ" secondAttribute="centerY" id="S01-N9-qDc"/>
+                <constraint firstItem="rKw-pW-PHB" firstAttribute="bottom" secondItem="ezE-3d-FYH" secondAttribute="top" id="TIE-7u-c4M"/>
                 <constraint firstItem="6cB-wx-JMd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UjJ-p4-bAO"/>
                 <constraint firstItem="iaC-1l-4RL" firstAttribute="centerY" secondItem="bjQ-2s-DTJ" secondAttribute="centerY" id="VYU-0z-iCG"/>
+                <constraint firstItem="rKw-pW-PHB" firstAttribute="trailing" secondItem="ezE-3d-FYH" secondAttribute="trailing" id="Wcz-k1-p31"/>
                 <constraint firstItem="RPY-Co-zaP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="fmr-fH-DjY"/>
                 <constraint firstItem="ezE-3d-FYH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oPh-Pd-b5h"/>
                 <constraint firstAttribute="bottom" secondItem="ezE-3d-FYH" secondAttribute="bottom" id="ukL-QF-UJf"/>
+                <constraint firstItem="rKw-pW-PHB" firstAttribute="leading" secondItem="ezE-3d-FYH" secondAttribute="leading" id="ze0-We-TIe"/>
                 <constraint firstItem="iaC-1l-4RL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zt6-Qj-p6T"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
