@@ -99,7 +99,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="6cB-wx-JMd" secondAttribute="trailing" id="26k-9H-XKU"/>
                 <constraint firstItem="bjQ-2s-DTJ" firstAttribute="trailing" secondItem="6cB-wx-JMd" secondAttribute="trailing" constant="-20" id="5CI-bv-qMS"/>

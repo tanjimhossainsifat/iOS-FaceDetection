@@ -10,7 +10,7 @@
 
 @implementation FDCvVideoCamera
 
-- (void)layoutPreviewLayer;
+- (void)layoutPreviewLayer
 {
     if (self.parentView != nil)
     {

@@ -114,7 +114,7 @@
     std::vector<cv::Rect>faceRects = [self getDetectedFaceRectsInImage:compressedImage];
         
     //3. Draw rectangle around image if necessary
-    //[self drawRectengaleInImage:image forFaceRects:faceRects];
+//    [self drawRectangleInImage:image forFaceRects:faceRects];
     
     //4. Draw replaced images for detected images
     [self drawReplacedImagesInImage:image forFaceRects:faceRects];
@@ -150,7 +150,7 @@
     return faceRects;
 }
 
-- (void) drawRectengaleInImage:(cv::Mat&) image forFaceRects:(std::vector<cv::Rect>)faceRects {
+- (void) drawRectangleInImage:(cv::Mat&) image forFaceRects:(std::vector<cv::Rect>)faceRects {
     
     for (int i = 0; i< faceRects.size(); i++) {
         cv::Rect eachFaceRect = faceRects[i];
@@ -166,7 +166,7 @@
     
     for (int i = 0; i< faceRects.size(); i++) {
         cv::Rect eachFaceRect = faceRects[i];
-        cv::Rect roi( cv::Point(eachFaceRect.x*CompressionRatio - eachFaceRect.width*CompressionRatio*0.25,eachFaceRect.y*CompressionRatio - eachFaceRect.height*CompressionRatio*0.5), cv::Size(eachFaceRect.width*CompressionRatio*1.5,eachFaceRect.height*CompressionRatio*2) );
+        cv::Rect roi( cv::Point(eachFaceRect.x*CompressionRatio - eachFaceRect.width*CompressionRatio*0.,eachFaceRect.y*CompressionRatio - eachFaceRect.height*CompressionRatio*0.09), cv::Size(eachFaceRect.width*CompressionRatio*1.,eachFaceRect.height*CompressionRatio*1.2) );
         cv::Mat replacedImage = replacedFaceImages[i%replacedFaceImages.size()];
         overlayImage(image, getDeviceOrientationedReplacedImage(replacedImage), image, roi);
     }

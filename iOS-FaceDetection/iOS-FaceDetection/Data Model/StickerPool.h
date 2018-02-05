@@ -11,6 +11,7 @@
 
 @interface StickerPool : NSObject
 
+- (void) initStickers;
 - (NSArray<Sticker *>*) getAllFaceStickers ;
 - (NSArray<Sticker *>*) getAllEyeStickers ;
 - (NSArray<Sticker *>*) getAllStickers;

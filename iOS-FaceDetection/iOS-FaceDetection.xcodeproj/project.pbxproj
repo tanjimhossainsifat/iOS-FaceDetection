@@ -15,12 +15,18 @@
 		0E3A31312025FBEE00C3583F /* StickerPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A31302025FBEE00C3583F /* StickerPool.m */; };
 		0E3A31352026038A00C3583F /* StickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A31332026038A00C3583F /* StickerCollectionViewCell.m */; };
 		0E3A31362026038A00C3583F /* StickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E3A31342026038A00C3583F /* StickerCollectionViewCell.xib */; };
+		0E3A313A202625D300C3583F /* CustomizeStickersViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A3138202625D300C3583F /* CustomizeStickersViewController.mm */; };
+		0E3A313B202625D300C3583F /* CustomizeStickersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E3A3139202625D300C3583F /* CustomizeStickersViewController.xib */; };
+		0E3A313F2026359900C3583F /* ConfirmStickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3A313D2026359900C3583F /* ConfirmStickerViewController.m */; };
+		0E3A31402026359900C3583F /* ConfirmStickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E3A313E2026359900C3583F /* ConfirmStickerViewController.xib */; };
 		0E42BC54201783F400C449DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC53201783F400C449DF /* AppDelegate.m */; };
 		0E42BC5C201783F400C449DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E42BC5B201783F400C449DF /* Assets.xcassets */; };
 		0E42BC62201783F500C449DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC61201783F500C449DF /* main.m */; };
 		0E42BC72201784C800C449DF /* LiveVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E42BC70201784C800C449DF /* LiveVideoViewController.m */; };
 		0E42BC73201784C800C449DF /* LiveVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E42BC71201784C800C449DF /* LiveVideoViewController.xib */; };
+		0E49EBED20271C7C00EB0553 /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E49EBEC20271C7C00EB0553 /* UIImage+Utility.m */; };
 		0E4C20F32017C14A00456104 /* FaceDetectorHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */; };
+		0E550A1520282D7D004D46E6 /* FDCvPhotoCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E550A1320282D7D004D46E6 /* FDCvPhotoCamera.mm */; };
 		0E9F6B4D201A055B00FFE879 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E9F6B4C201A055B00FFE879 /* Launch Screen.storyboard */; };
 		0EBD966920198D9300109A48 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0EBD966820198D9300109A48 /* haarcascade_frontalface_alt2.xml */; };
 /* End PBXBuildFile section */
@@ -38,6 +44,12 @@
 		0E3A31322026038A00C3583F /* StickerCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickerCollectionViewCell.h; sourceTree = "<group>"; };
 		0E3A31332026038A00C3583F /* StickerCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickerCollectionViewCell.m; sourceTree = "<group>"; };
 		0E3A31342026038A00C3583F /* StickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		0E3A3137202625D300C3583F /* CustomizeStickersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizeStickersViewController.h; sourceTree = "<group>"; };
+		0E3A3138202625D300C3583F /* CustomizeStickersViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomizeStickersViewController.mm; sourceTree = "<group>"; };
+		0E3A3139202625D300C3583F /* CustomizeStickersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomizeStickersViewController.xib; sourceTree = "<group>"; };
+		0E3A313C2026359900C3583F /* ConfirmStickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmStickerViewController.h; sourceTree = "<group>"; };
+		0E3A313D2026359900C3583F /* ConfirmStickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmStickerViewController.m; sourceTree = "<group>"; };
+		0E3A313E2026359900C3583F /* ConfirmStickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmStickerViewController.xib; sourceTree = "<group>"; };
 		0E42BC4F201783F400C449DF /* iOS-FaceDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-FaceDetection.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E42BC52201783F400C449DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0E42BC53201783F400C449DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -47,9 +59,13 @@
 		0E42BC6F201784C800C449DF /* LiveVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveVideoViewController.h; sourceTree = "<group>"; };
 		0E42BC70201784C800C449DF /* LiveVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveVideoViewController.m; sourceTree = "<group>"; };
 		0E42BC71201784C800C449DF /* LiveVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveVideoViewController.xib; sourceTree = "<group>"; };
+		0E49EBEB20271C7C00EB0553 /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
+		0E49EBEC20271C7C00EB0553 /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
 		0E4C20F12017C14A00456104 /* FaceDetectorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectorHelper.h; sourceTree = "<group>"; };
 		0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetectorHelper.mm; sourceTree = "<group>"; };
 		0E4C20F52017C16F00456104 /* iOS-FaceDetection-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS-FaceDetection-Prefix.pch"; sourceTree = "<group>"; };
+		0E550A1320282D7D004D46E6 /* FDCvPhotoCamera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FDCvPhotoCamera.mm; sourceTree = "<group>"; };
+		0E550A1420282D7D004D46E6 /* FDCvPhotoCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCvPhotoCamera.h; sourceTree = "<group>"; };
 		0E9F6B4C201A055B00FFE879 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		0EBD966820198D9300109A48 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +129,7 @@
 		0E42BC51201783F400C449DF /* iOS-FaceDetection */ = {
 			isa = PBXGroup;
 			children = (
+				0E49EBEA20271C6500EB0553 /* Utilities */,
 				0E3A312B2025F85500C3583F /* Data Model */,
 				0E1D52B7201B9CA200C176EF /* Resources */,
 				0E4C20F42017C15A00456104 /* Supporting Files */,
@@ -136,13 +153,30 @@
 				0E3A31322026038A00C3583F /* StickerCollectionViewCell.h */,
 				0E3A31332026038A00C3583F /* StickerCollectionViewCell.m */,
 				0E3A31342026038A00C3583F /* StickerCollectionViewCell.xib */,
+				0E3A3137202625D300C3583F /* CustomizeStickersViewController.h */,
+				0E3A3138202625D300C3583F /* CustomizeStickersViewController.mm */,
+				0E3A3139202625D300C3583F /* CustomizeStickersViewController.xib */,
+				0E3A313C2026359900C3583F /* ConfirmStickerViewController.h */,
+				0E3A313D2026359900C3583F /* ConfirmStickerViewController.m */,
+				0E3A313E2026359900C3583F /* ConfirmStickerViewController.xib */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0E49EBEA20271C6500EB0553 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0E49EBEB20271C7C00EB0553 /* UIImage+Utility.h */,
+				0E49EBEC20271C7C00EB0553 /* UIImage+Utility.m */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		0E4C20F02017C12400456104 /* OpenCV Helper */ = {
 			isa = PBXGroup;
 			children = (
+				0E550A1420282D7D004D46E6 /* FDCvPhotoCamera.h */,
+				0E550A1320282D7D004D46E6 /* FDCvPhotoCamera.mm */,
 				0E4C20F12017C14A00456104 /* FaceDetectorHelper.h */,
 				0E4C20F22017C14A00456104 /* FaceDetectorHelper.mm */,
 				0E1AD7DD201F16DA00F73DBE /* FDCvVideoCamera.h */,
@@ -219,7 +253,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E3A313B202625D300C3583F /* CustomizeStickersViewController.xib in Resources */,
 				0E1D52BE201BA15600C176EF /* cage.png in Resources */,
+				0E3A31402026359900C3583F /* ConfirmStickerViewController.xib in Resources */,
 				0EBD966920198D9300109A48 /* haarcascade_frontalface_alt2.xml in Resources */,
 				0E3A31362026038A00C3583F /* StickerCollectionViewCell.xib in Resources */,
 				0E1D52BC201BA15600C176EF /* toby.png in Resources */,
@@ -237,13 +273,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E3A313A202625D300C3583F /* CustomizeStickersViewController.mm in Sources */,
 				0E42BC62201783F500C449DF /* main.m in Sources */,
 				0E3A31312025FBEE00C3583F /* StickerPool.m in Sources */,
 				0E3A31352026038A00C3583F /* StickerCollectionViewCell.m in Sources */,
+				0E550A1520282D7D004D46E6 /* FDCvPhotoCamera.mm in Sources */,
 				0E42BC72201784C800C449DF /* LiveVideoViewController.m in Sources */,
 				0E4C20F32017C14A00456104 /* FaceDetectorHelper.mm in Sources */,
 				0E42BC54201783F400C449DF /* AppDelegate.m in Sources */,
+				0E3A313F2026359900C3583F /* ConfirmStickerViewController.m in Sources */,
 				0E1AD7DF201F16DA00F73DBE /* FDCvVideoCamera.mm in Sources */,
+				0E49EBED20271C7C00EB0553 /* UIImage+Utility.m in Sources */,
 				0E3A312E2025F89C00C3583F /* Sticker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

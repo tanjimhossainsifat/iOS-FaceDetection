@@ -10,6 +10,7 @@
 #import "FaceDetectorHelper.h"
 #import "StickerPool.h"
 #import "StickerCollectionViewCell.h"
+#import "CustomizeStickersViewController.h"
 
 @interface LiveVideoViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -32,19 +33,21 @@
     [self.stickerCollectionView registerNib:[UINib nibWithNibName:@"StickerCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"StickerCell"];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [self.faceDetectorHelper startCapture];
+    [self.stickerPool initStickers];
     [self.stickerCollectionView reloadData];
 }
 
-- (void) viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     
     [self.faceDetectorHelper stopCapture];
 }
 
+#pragma  mark - Button methods
 - (IBAction)onRotateButton:(id)sender {
     [self.faceDetectorHelper rotateCamera];
 }
@@ -115,6 +118,14 @@
         if(cell) {
             cell.imageView.image = [UIImage imageNamed:@"add_new_down"];
         }
+        
+        CustomizeStickersViewController *customizeStickersVc = [[CustomizeStickersViewController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:customizeStickersVc];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:navController animated:YES completion:^{
+                
+            }];
+        });
     }
     else {
         

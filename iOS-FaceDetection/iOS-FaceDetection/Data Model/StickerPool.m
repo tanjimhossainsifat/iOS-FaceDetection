@@ -63,6 +63,20 @@
             }
         }
     }
+    
+    NSString *basePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSArray *stickerList = [[NSUserDefaults standardUserDefaults] objectForKey:@"stickers"];
+    for(NSString *fileName in stickerList) {
+        NSString *filePath = [basePath stringByAppendingPathComponent:fileName];
+        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+        if(image) {
+            Sticker *faceSticker = [[Sticker alloc] initWithImage:image withType:StickerTypeFace];
+            if(faceSticker) {
+                [faceStickerList addObject:faceSticker];
+                [allStickerList addObject:faceSticker];
+            }
+        }
+    }
 }
 
 #pragma mark - Public methods
