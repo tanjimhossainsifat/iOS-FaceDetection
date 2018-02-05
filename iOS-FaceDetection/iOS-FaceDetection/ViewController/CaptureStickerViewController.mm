@@ -1,21 +1,21 @@
 //
-//  CustomizeStickersViewController.m
+//  CaptureStickerViewController.m
 //  iOS-FaceDetection
 //
 //  Created by Tanjim Hossain on 3/2/18.
 //  Copyright © 2018 Tanjim Hossain. All rights reserved.
 //
 
-#import "CustomizeStickersViewController.h"
+#import "CaptureStickerViewController.h"
 #import "FDCvPhotoCamera.h"
 #import "ConfirmStickerViewController.h"
 #import "UIImage+Utility.h"
 
-@interface CustomizeStickersViewController ()<CvPhotoCameraDelegate>
+@interface CaptureStickerViewController ()<CvPhotoCameraDelegate>
 
 @end
 
-@implementation CustomizeStickersViewController {
+@implementation CaptureStickerViewController {
     
     FDCvPhotoCamera *photoCamera;
 }

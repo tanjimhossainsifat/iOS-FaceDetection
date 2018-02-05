@@ -166,7 +166,7 @@
     
     for (int i = 0; i< faceRects.size(); i++) {
         cv::Rect eachFaceRect = faceRects[i];
-        cv::Rect roi( cv::Point(eachFaceRect.x*CompressionRatio - eachFaceRect.width*CompressionRatio*0.,eachFaceRect.y*CompressionRatio - eachFaceRect.height*CompressionRatio*0.09), cv::Size(eachFaceRect.width*CompressionRatio*1.,eachFaceRect.height*CompressionRatio*1.2) );
+        cv::Rect roi( cv::Point(eachFaceRect.x*CompressionRatio - eachFaceRect.width*CompressionRatio*0.,eachFaceRect.y*CompressionRatio - eachFaceRect.height*CompressionRatio*0.1), cv::Size(eachFaceRect.width*CompressionRatio*1.,eachFaceRect.height*CompressionRatio*1.22) );
         cv::Mat replacedImage = replacedFaceImages[i%replacedFaceImages.size()];
         overlayImage(image, getDeviceOrientationedReplacedImage(replacedImage), image, roi);
     }

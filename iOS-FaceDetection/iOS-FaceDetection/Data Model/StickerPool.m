@@ -32,7 +32,7 @@
 - (void) initStickers {
     
     //Images are now static.
-    NSArray *faceStickerImages = @[@"cage.png",@"toby.png",@"will.png"];
+    NSArray *faceStickerImages = @[@"cage1.png",@"will1.png"];
     NSArray *eyeStickerIamges = @[];
     
     //Initialize all stickerLists

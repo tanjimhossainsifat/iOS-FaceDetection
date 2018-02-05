@@ -1,5 +1,5 @@
 //
-//  CustomizeStickersViewController.h
+//  CaptureStickerViewController.h
 //  iOS-FaceDetection
 //
 //  Created by Tanjim Hossain on 3/2/18.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomizeStickersViewController : UIViewController
+@interface CaptureStickerViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *captureImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *faceImageView;
 @property (weak, nonatomic) IBOutlet UIView *stickerView;

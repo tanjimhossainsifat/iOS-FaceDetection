@@ -10,7 +10,7 @@
 #import "FaceDetectorHelper.h"
 #import "StickerPool.h"
 #import "StickerCollectionViewCell.h"
-#import "CustomizeStickersViewController.h"
+#import "CaptureStickerViewController.h"
 
 @interface LiveVideoViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -119,8 +119,8 @@
             cell.imageView.image = [UIImage imageNamed:@"add_new_down"];
         }
         
-        CustomizeStickersViewController *customizeStickersVc = [[CustomizeStickersViewController alloc] init];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:customizeStickersVc];
+        CaptureStickerViewController *captureStickerVC = [[CaptureStickerViewController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:captureStickerVC];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self presentViewController:navController animated:YES completion:^{
                 
