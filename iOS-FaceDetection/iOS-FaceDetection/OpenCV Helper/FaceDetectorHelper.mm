@@ -114,9 +114,16 @@
     std::vector<cv::Rect>faceRects = [self getDetectedFaceRectsInImage:compressedImage];
         
     //3. Draw rectangle around image if necessary
-//    [self drawRectangleInImage:image forFaceRects:faceRects];
+    if(self.shouldDrawRectangle)
+        [self drawRectangleInImage:image forFaceRects:faceRects];
     
-    //4. Draw replaced images for detected images
+    //4. Call delegate method
+    if(self.delegate && [self.delegate respondsToSelector:@selector(detectedFaceWithUnitCGRects:withUIImages:)]) {
+
+        [self.delegate detectedFaceWithUnitCGRects:[self getUnitCGRectListForDetectedFaces:faceRects] withUIImages:[self getUIImageListForDetectedFaces:faceRects fromImage:image]];
+    }
+    
+    //5. Draw replaced images for detected images
     [self drawReplacedImagesInImage:image forFaceRects:faceRects];
 }
 
@@ -171,6 +178,40 @@
         overlayImage(image, getDeviceOrientationedReplacedImage(replacedImage), image, roi);
     }
 }
+
+-(NSArray *) getUnitCGRectListForDetectedFaces:(std::vector<cv::Rect>&)faceRects {
+    
+    NSMutableArray *faceUnitCGRects = [[NSMutableArray alloc] initWithCapacity:faceRects.size()];
+    
+    for (int i =0; i<faceRects.size(); i++) {
+        
+        cv::Rect eachFaceRect = faceRects[i];
+        
+        //In PotraitMode, Width = 480, Height = 640
+        CGRect eachUnitCGRect = CGRectMake((eachFaceRect.x*CompressionRatio)/480, (eachFaceRect.y*CompressionRatio)/640, (eachFaceRect.width*CompressionRatio)/480, (eachFaceRect.height*CompressionRatio)/640);
+        
+        [faceUnitCGRects addObject:[NSValue valueWithCGRect:eachUnitCGRect]];
+    }
+    
+    return faceUnitCGRects;
+}
+
+-(NSArray *) getUIImageListForDetectedFaces:(std::vector<cv::Rect>&)faceRects fromImage:(cv::Mat&)image{
+    
+    NSMutableArray *faceUIImages = [[NSMutableArray alloc] initWithCapacity:faceRects.size()];
+    
+    for (int i =0; i<faceRects.size(); i++) {
+        
+        cv::Rect eachFaceRect = faceRects[i];
+        
+        cv::Mat croppedImage(image,eachFaceRect);
+        
+        [faceUIImages addObject:MatToUIImage(croppedImage)];
+    }
+    
+    return faceUIImages;
+}
+
 
 void overlayImage(const cv::Mat &background, const cv::Mat &overlayImage,
                   cv::Mat &output, cv::Rect roi)

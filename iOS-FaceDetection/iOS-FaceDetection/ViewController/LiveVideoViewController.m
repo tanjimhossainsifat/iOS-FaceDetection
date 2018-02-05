@@ -26,6 +26,7 @@
     [super viewDidLoad];
     
     self.faceDetectorHelper = [[FaceDetectorHelper alloc] initWithParentView:self.imageView];
+    self.faceDetectorHelper.shouldDrawRectangle = NO;
     
     self.stickerPool = [[StickerPool alloc] init];
     selectedStickerIndex = -1;
