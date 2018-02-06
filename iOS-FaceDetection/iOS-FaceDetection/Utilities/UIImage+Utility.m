@@ -217,6 +217,15 @@
     return result;
 }
 
+- (UIImage*)maskedImagetoPath:(UIBezierPath *)path {
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0);
+    [path addClip];
+    [self drawAtPoint:CGPointZero];
+    UIImage *maskedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return maskedImage;
+}
+
 #pragma mark- Blur
 
 - (UIImage*)gaussBlur:(CGFloat)blurLevel

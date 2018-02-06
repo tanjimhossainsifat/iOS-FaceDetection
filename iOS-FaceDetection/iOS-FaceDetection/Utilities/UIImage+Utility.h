@@ -24,6 +24,7 @@
 - (UIImage*)crop:(CGRect)rect;
 
 - (UIImage*)maskedImage:(UIImage*)maskImage;
+- (UIImage*)maskedImagetoPath:(UIBezierPath *)path;
 
 - (UIImage*)gaussBlur:(CGFloat)blurLevel;       //  {blurLevel | 0 ≤ t ≤ 1}
 

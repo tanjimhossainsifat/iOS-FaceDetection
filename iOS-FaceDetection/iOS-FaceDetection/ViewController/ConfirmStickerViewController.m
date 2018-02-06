@@ -7,6 +7,7 @@
 //
 
 #import "ConfirmStickerViewController.h"
+#import "UIImage+Utility.h"
 
 @interface ConfirmStickerViewController ()
 
@@ -22,7 +23,22 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.imageView.image = self.image;
+    if(self.image) {
+        CGFloat width = self.image.size.width;
+        CGFloat height = self.image.size.height;
+        
+        UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(width*0.1, height*.05, width-width*0.1*2, height-height*.05)];
+//        [path moveToPoint:CGPointMake(width*0.16, 0)];
+//        [path addLineToPoint:CGPointMake(width - width*0.16, 0)];
+//        [path addQuadCurveToPoint:CGPointMake(width - width*0.16, height) controlPoint:CGPointMake(width, height/2)];
+//        [path addLineToPoint:CGPointMake(width*0.16, height)];
+//        [path addQuadCurveToPoint:CGPointMake(width*0.16, 0) controlPoint:CGPointMake(0, height/2)];
+        
+        self.image = [self.image maskedImagetoPath:path];
+        
+        self.imageView.image = self.image;
+        
+    }
 }
 
 - (IBAction)onButtonSave:(UIButton *)sender {

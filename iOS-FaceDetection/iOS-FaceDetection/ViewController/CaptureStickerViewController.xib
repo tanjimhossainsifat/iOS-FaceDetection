@@ -12,9 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CaptureStickerViewController">
             <connections>
-                <outlet property="captureButton" destination="Q6I-Xi-Oub" id="e3L-VF-nho"/>
                 <outlet property="captureImageView" destination="e7j-Jg-UpN" id="QGS-pa-P5x"/>
-                <outlet property="faceImageView" destination="X0g-Te-y1K" id="Yb0-ns-Ukf"/>
                 <outlet property="rotateButton" destination="hZk-Aw-jEq" id="X3f-Zv-yHc"/>
                 <outlet property="stickerView" destination="QTt-Jy-0rl" id="p2v-ai-sBc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -28,26 +26,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCb-YZ-CWJ">
                     <rect key="frame" x="-0.5" y="20" width="375" height="500"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e7j-Jg-UpN">
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e7j-Jg-UpN">
                             <rect key="frame" x="-0.5" y="0.0" width="375" height="500"/>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="face" translatesAutoresizingMaskIntoConstraints="NO" id="X0g-Te-y1K">
-                            <rect key="frame" x="37.5" y="25.5" width="300" height="399"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="399" id="UY8-f0-IMZ"/>
-                                <constraint firstAttribute="width" constant="300" id="dyj-7a-exo"/>
-                            </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="e7j-Jg-UpN" firstAttribute="top" secondItem="xCb-YZ-CWJ" secondAttribute="top" id="8G1-Sh-7OG"/>
-                        <constraint firstItem="X0g-Te-y1K" firstAttribute="centerX" secondItem="xCb-YZ-CWJ" secondAttribute="centerX" id="AE0-Qe-Dbf"/>
                         <constraint firstAttribute="width" constant="375" id="Agc-s1-gJ2"/>
                         <constraint firstAttribute="trailing" secondItem="e7j-Jg-UpN" secondAttribute="trailing" id="E2J-WV-qcw"/>
                         <constraint firstAttribute="height" constant="500" id="Inc-97-Jkk"/>
-                        <constraint firstItem="X0g-Te-y1K" firstAttribute="centerY" secondItem="xCb-YZ-CWJ" secondAttribute="centerY" constant="-25" id="NCT-mZ-erZ"/>
                         <constraint firstItem="e7j-Jg-UpN" firstAttribute="leading" secondItem="xCb-YZ-CWJ" secondAttribute="leading" id="Zb9-xR-gly"/>
                         <constraint firstAttribute="bottom" secondItem="e7j-Jg-UpN" secondAttribute="bottom" id="kNy-MN-2Is"/>
                     </constraints>
@@ -86,18 +75,6 @@
                         <action selector="onButtonRotate:" destination="-1" eventType="touchUpInside" id="dST-mV-vWA"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6I-Xi-Oub">
-                    <rect key="frame" x="162" y="465" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="BMg-SZ-Ggs"/>
-                        <constraint firstAttribute="height" constant="50" id="T8t-n7-nND"/>
-                    </constraints>
-                    <state key="normal" image="snapshot_up"/>
-                    <state key="highlighted" image="snapshot_down"/>
-                    <connections>
-                        <action selector="onButtonCapture:" destination="-1" eventType="touchUpInside" id="253-7D-5hO"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -106,9 +83,7 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="QTt-Jy-0rl" secondAttribute="bottom" id="8qI-2w-WWN"/>
                 <constraint firstItem="xCb-YZ-CWJ" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="GGf-wu-8rm"/>
                 <constraint firstItem="hZk-Aw-jEq" firstAttribute="bottom" secondItem="xCb-YZ-CWJ" secondAttribute="bottom" constant="-10" id="TLr-N5-NCp"/>
-                <constraint firstItem="Q6I-Xi-Oub" firstAttribute="centerY" secondItem="hZk-Aw-jEq" secondAttribute="centerY" id="UWv-bj-Bwn"/>
                 <constraint firstItem="QTt-Jy-0rl" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="cd5-11-T4F"/>
-                <constraint firstItem="Q6I-Xi-Oub" firstAttribute="centerX" secondItem="xCb-YZ-CWJ" secondAttribute="centerX" id="gIE-Ra-ZDi"/>
                 <constraint firstItem="hZk-Aw-jEq" firstAttribute="trailing" secondItem="xCb-YZ-CWJ" secondAttribute="trailing" constant="-20" id="uoi-6t-qdU"/>
                 <constraint firstItem="xCb-YZ-CWJ" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="v9i-L8-oBU"/>
             </constraints>
@@ -119,8 +94,5 @@
     <resources>
         <image name="camera_rotate_down" width="50" height="50"/>
         <image name="camera_rotate_up" width="50" height="50"/>
-        <image name="face" width="150" height="199"/>
-        <image name="snapshot_down" width="50" height="50"/>
-        <image name="snapshot_up" width="50" height="50"/>
     </resources>
 </document>
