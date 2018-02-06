@@ -28,11 +28,6 @@
         CGFloat height = self.image.size.height;
         
         UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(width*0.1, height*.05, width-width*0.1*2, height-height*.05)];
-//        [path moveToPoint:CGPointMake(width*0.16, 0)];
-//        [path addLineToPoint:CGPointMake(width - width*0.16, 0)];
-//        [path addQuadCurveToPoint:CGPointMake(width - width*0.16, height) controlPoint:CGPointMake(width, height/2)];
-//        [path addLineToPoint:CGPointMake(width*0.16, height)];
-//        [path addQuadCurveToPoint:CGPointMake(width*0.16, 0) controlPoint:CGPointMake(0, height/2)];
         
         self.image = [self.image maskedImagetoPath:path];
         
@@ -67,6 +62,19 @@
             [stickerList addObject:fileName];
             [[NSUserDefaults standardUserDefaults] setObject:stickerList forKey:@"stickers"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            UIAlertController   *alert = [UIAlertController alertControllerWithTitle:@"Sticker saved" message:@"Sticker has been saved successfully" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+                
+            }]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:alert animated:YES completion:nil];
+            });
         }
     }
 }
