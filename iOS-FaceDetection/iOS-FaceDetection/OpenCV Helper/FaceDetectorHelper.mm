@@ -26,7 +26,7 @@
 #pragma mark - Video Camera methods
 - (instancetype) initWithParentView:(UIView *)parentView {
     
-    [self initCameraWithParentView:parentView capturingFeedFromBackCamera:NO];
+    [self initCameraWithParentView:parentView capturingFeedFromBackCamera:YES];
     
     NSString *faceascadePath = [[NSBundle mainBundle] pathForResource:@"haarcascade_frontalface_alt2" ofType:@"xml"];
     faceDetector.load([faceascadePath UTF8String]);

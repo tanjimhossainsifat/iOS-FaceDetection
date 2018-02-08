@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E189285202C8C5E0048D298 /* bean.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E189284202C8C5E0048D298 /* bean.png */; };
 		0E1AD7DF201F16DA00F73DBE /* FDCvVideoCamera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0E1AD7DE201F16DA00F73DBE /* FDCvVideoCamera.mm */; };
 		0E1D52BC201BA15600C176EF /* toby.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52B9201BA15600C176EF /* toby.png */; };
 		0E1D52BD201BA15600C176EF /* will.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E1D52BA201BA15600C176EF /* will.png */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E189284202C8C5E0048D298 /* bean.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bean.png; sourceTree = "<group>"; };
 		0E1AD7DD201F16DA00F73DBE /* FDCvVideoCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FDCvVideoCamera.h; sourceTree = "<group>"; };
 		0E1AD7DE201F16DA00F73DBE /* FDCvVideoCamera.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FDCvVideoCamera.mm; sourceTree = "<group>"; };
 		0E1D52B9201BA15600C176EF /* toby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toby.png; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		0E1D52B8201B9CAB00C176EF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0E189284202C8C5E0048D298 /* bean.png */,
 				0EC105E42028AA3F00C1770E /* cage1.png */,
 				0E1D52BB201BA15600C176EF /* cage.png */,
 				0E1D52B9201BA15600C176EF /* toby.png */,
@@ -273,6 +276,7 @@
 				0E42BC73201784C800C449DF /* LiveVideoViewController.xib in Resources */,
 				0E9F6B4D201A055B00FFE879 /* Launch Screen.storyboard in Resources */,
 				0EC105E52028AA3F00C1770E /* cage1.png in Resources */,
+				0E189285202C8C5E0048D298 /* bean.png in Resources */,
 				0E42BC5C201783F400C449DF /* Assets.xcassets in Resources */,
 				0E1D52BD201BA15600C176EF /* will.png in Resources */,
 			);
